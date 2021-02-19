@@ -7,7 +7,7 @@
 
 # 下载YOLOv3-416权重
 - https://pjreddie.com/darknet/yolo/
-- 基于Opencv的Dnn模块实现yolov3进行目标检测
+- 基于Opencv的Dnn模块实现yolov3目标检测
 
 # 卡尔曼滤波
 - https://zhuanlan.zhihu.com/p/45238681
