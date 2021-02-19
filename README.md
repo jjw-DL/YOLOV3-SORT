@@ -1,7 +1,7 @@
 # YOLOV3-SORT实现车辆跟踪与车流统计
 - 代码简单，适合新手学习，ID Switch较多。
 - 先学习SORT算法，明白基于检测的目标跟踪基本框架，然后在学习Deepsort。
-- Tutorial文件夹是教程
+- Tutorial文件夹是教程，下载后用浏览器查看
 # 实现效果：
 ![img](https://github.com/jjw-DL/YOLOV3-SORT/blob/master/output/output.gif) 
 
