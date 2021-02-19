@@ -1,0 +1,591 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>3.7. 数据关联 · opencv</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-code/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-katex/katex.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="deepsort.html" />
+    
+    
+    <link rel="prev" href="Hungrarian.html" />
+    
+
+    <script src="../gitbook/gitbook-plugin-graph/d3.min.js"></script>
+    <script src="../gitbook/gitbook-plugin-graph/function-plot.js"></script>    
+
+    
+    <link rel="stylesheet" href="../gitbook/gitbook-plugin-chart/c3/c3.min.css">
+    <script src="../gitbook/gitbook-plugin-chart/c3/d3.min.js"></script>
+    <script src="../gitbook/gitbook-plugin-chart/c3/c3.min.js"></script>
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../项目简介/ReadMe.html">
+            
+                <a href="../项目简介/ReadMe.html">
+            
+                    
+                    1.项目简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../算法库/ReadMe.html">
+            
+                <a href="../算法库/ReadMe.html">
+            
+                    
+                    2.算法库
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../算法库/numba.html">
+            
+                <a href="../算法库/numba.html">
+            
+                    
+                    2.1. numba
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../算法库/imutils.html">
+            
+                <a href="../算法库/imutils.html">
+            
+                    
+                    2.2. imutils
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../算法库/dnn.html">
+            
+                <a href="../算法库/dnn.html">
+            
+                    
+                    2.3. cv.dnn
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="ReadMe.html">
+            
+                <a href="ReadMe.html">
+            
+                    
+                    3.车流量检测实现
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="MOT.html">
+            
+                <a href="MOT.html">
+            
+                    
+                    3.1. 多目标追踪
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="help.html">
+            
+                <a href="help.html">
+            
+                    
+                    3.2. 辅助功能
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="kalmam.html">
+            
+                <a href="kalmam.html">
+            
+                    
+                    3.3.卡尔曼滤波器 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="kalmamRelize.html">
+            
+                <a href="kalmamRelize.html">
+            
+                    
+                    3.4.卡尔曼滤波器实践 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="kalman.html">
+            
+                <a href="kalman.html">
+            
+                    
+                    3.5. 目标估计模型-卡尔曼滤波
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="Hungrarian.html">
+            
+                <a href="Hungrarian.html">
+            
+                    
+                    3.6. 匈牙利算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.7" data-path="associate.html">
+            
+                <a href="associate.html">
+            
+                    
+                    3.7. 数据关联
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="deepsort.html">
+            
+                <a href="deepsort.html">
+            
+                    
+                    3.8. SORT/deepSORT 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="sort.html">
+            
+                <a href="sort.html">
+            
+                    
+                    3.9.多目标追踪实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="yoloV3.html">
+            
+                <a href="yoloV3.html">
+            
+                    
+                    3.10.yoloV3模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.11" data-path="dection.html">
+            
+                <a href="dection.html">
+            
+                    
+                    3.11. 基于yoloV3的目标检测
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.12" data-path="count.html">
+            
+                <a href="count.html">
+            
+                    
+                    3.12. 车流量统计
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.13" data-path="result.html">
+            
+                <a href="result.html">
+            
+                    
+                    3.13. 视频中的车流量统计
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >3.7. 数据关联</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="46-&#x6570;&#x636E;&#x5173;&#x8054;">4.6. &#x6570;&#x636E;&#x5173;&#x8054;</h1>
+<p><strong>&#x5B66;&#x4E60;&#x76EE;&#x6807;</strong></p>
+<ul>
+<li>&#x5229;&#x7528;&#x5308;&#x7259;&#x5229;&#x7B97;&#x6CD5;&#x5BF9;&#x76EE;&#x6807;&#x6846;&#x548C;&#x68C0;&#x6D4B;&#x6846;&#x8FDB;&#x884C;&#x5173;&#x8054;</li>
+</ul>
+<hr>
+<p>&#x5728;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x5BF9;&#x68C0;&#x6D4B;&#x6846;&#x548C;&#x8DDF;&#x8E2A;&#x6846;&#x8FDB;&#x884C;&#x5339;&#x914D;&#xFF0C;&#x6574;&#x4E2A;&#x6D41;&#x7A0B;&#x662F;&#x904D;&#x5386;&#x68C0;&#x6D4B;&#x6846;&#x548C;&#x8DDF;&#x8E2A;&#x6846;&#xFF0C;&#x5E76;&#x8FDB;&#x884C;&#x5339;&#x914D;&#xFF0C;&#x5339;&#x914D;&#x6210;&#x529F;&#x7684;&#x5C06;&#x5176;&#x4FDD;&#x7559;&#xFF0C;&#x672A;&#x6210;&#x529F;&#x7684;&#x5C06;&#x5176;&#x5220;&#x9664;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">associate_detections_to_trackers</span><span class="hljs-params">(detections, trackers, iou_threshold=<span class="hljs-number">0.3</span>)</span>:</span>
+    <span class="hljs-string">&quot;&quot;&quot;
+    &#x5C06;&#x68C0;&#x6D4B;&#x6846;bbox&#x4E0E;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x5668;&#x7684;&#x8DDF;&#x8E2A;&#x6846;&#x8FDB;&#x884C;&#x5173;&#x8054;&#x5339;&#x914D;
+    :param detections:&#x68C0;&#x6D4B;&#x6846;
+    :param trackers:&#x8DDF;&#x8E2A;&#x6846;&#xFF0C;&#x5373;&#x8DDF;&#x8E2A;&#x76EE;&#x6807;
+    :param iou_threshold:IOU&#x9608;&#x503C;
+    :return:&#x8DDF;&#x8E2A;&#x6210;&#x529F;&#x76EE;&#x6807;&#x7684;&#x77E9;&#x9635;&#xFF1A;matchs
+            &#x65B0;&#x589E;&#x76EE;&#x6807;&#x7684;&#x77E9;&#x9635;&#xFF1A;unmatched_detections
+            &#x8DDF;&#x8E2A;&#x5931;&#x8D25;&#x5373;&#x79BB;&#x5F00;&#x753B;&#x9762;&#x7684;&#x76EE;&#x6807;&#x77E9;&#x9635;&#xFF1A;unmatched_trackers
+    &quot;&quot;&quot;</span>
+    <span class="hljs-comment"># &#x8DDF;&#x8E2A;&#x76EE;&#x6807;&#x6570;&#x91CF;&#x4E3A;0&#xFF0C;&#x76F4;&#x63A5;&#x6784;&#x9020;&#x7ED3;&#x679C;</span>
+    <span class="hljs-keyword">if</span> (len(trackers) == <span class="hljs-number">0</span>) <span class="hljs-keyword">or</span> (len(detections) == <span class="hljs-number">0</span>):
+        <span class="hljs-keyword">return</span> np.empty((<span class="hljs-number">0</span>, <span class="hljs-number">2</span>), dtype=int), np.arange(len(detections)), np.empty((<span class="hljs-number">0</span>, <span class="hljs-number">5</span>), dtype=int)
+
+    <span class="hljs-comment"># iou &#x4E0D;&#x652F;&#x6301;&#x6570;&#x7EC4;&#x8BA1;&#x7B97;&#x3002;&#x9010;&#x4E2A;&#x8BA1;&#x7B97;&#x4E24;&#x4E24;&#x95F4;&#x7684;&#x4EA4;&#x5E76;&#x6BD4;&#xFF0C;&#x8C03;&#x7528; linear_assignment &#x8FDB;&#x884C;&#x5339;&#x914D;</span>
+    iou_matrix = np.zeros((len(detections), len(trackers)), dtype=np.float32)
+    <span class="hljs-comment"># &#x904D;&#x5386;&#x76EE;&#x6807;&#x68C0;&#x6D4B;&#x7684;bbox&#x96C6;&#x5408;&#xFF0C;&#x6BCF;&#x4E2A;&#x68C0;&#x6D4B;&#x6846;&#x7684;&#x6807;&#x8BC6;&#x4E3A;d</span>
+    <span class="hljs-keyword">for</span> d, det <span class="hljs-keyword">in</span> enumerate(detections):
+        <span class="hljs-comment"># &#x904D;&#x5386;&#x8DDF;&#x8E2A;&#x6846;&#xFF08;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x5668;&#x9884;&#x6D4B;&#xFF09;bbox&#x96C6;&#x5408;&#xFF0C;&#x6BCF;&#x4E2A;&#x8DDF;&#x8E2A;&#x6846;&#x6807;&#x8BC6;&#x4E3A;t</span>
+        <span class="hljs-keyword">for</span> t, trk <span class="hljs-keyword">in</span> enumerate(trackers):
+            iou_matrix[d, t] = iou(det, trk)
+    <span class="hljs-comment"># &#x901A;&#x8FC7;&#x5308;&#x7259;&#x5229;&#x7B97;&#x6CD5;&#x5C06;&#x8DDF;&#x8E2A;&#x6846;&#x548C;&#x68C0;&#x6D4B;&#x6846;&#x4EE5;[[d,t]...]&#x7684;&#x4E8C;&#x7EF4;&#x77E9;&#x9635;&#x7684;&#x5F62;&#x5F0F;&#x5B58;&#x50A8;&#x5728;match_indices&#x4E2D;</span>
+    result = linear_sum_assignment(-iou_matrix)
+    matched_indices = np.array(list(zip(*result)))
+
+    <span class="hljs-comment"># &#x8BB0;&#x5F55;&#x672A;&#x5339;&#x914D;&#x7684;&#x68C0;&#x6D4B;&#x6846;&#x53CA;&#x8DDF;&#x8E2A;&#x6846;</span>
+    <span class="hljs-comment"># &#x672A;&#x5339;&#x914D;&#x7684;&#x68C0;&#x6D4B;&#x6846;&#x653E;&#x5165;unmatched_detections&#x4E2D;&#xFF0C;&#x8868;&#x793A;&#x6709;&#x65B0;&#x7684;&#x76EE;&#x6807;&#x8FDB;&#x5165;&#x753B;&#x9762;&#xFF0C;&#x8981;&#x65B0;&#x589E;&#x8DDF;&#x8E2A;&#x5668;&#x8DDF;&#x8E2A;&#x76EE;&#x6807;</span>
+    unmatched_detections = []
+    <span class="hljs-keyword">for</span> d, det <span class="hljs-keyword">in</span> enumerate(detections):
+        <span class="hljs-keyword">if</span> d <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> matched_indices[:, <span class="hljs-number">0</span>]:
+            unmatched_detections.append(d)
+    <span class="hljs-comment"># &#x672A;&#x5339;&#x914D;&#x7684;&#x8DDF;&#x8E2A;&#x6846;&#x653E;&#x5165;unmatched_trackers&#x4E2D;&#xFF0C;&#x8868;&#x793A;&#x76EE;&#x6807;&#x79BB;&#x5F00;&#x4E4B;&#x524D;&#x7684;&#x753B;&#x9762;&#xFF0C;&#x5E94;&#x5220;&#x9664;&#x5BF9;&#x5E94;&#x7684;&#x8DDF;&#x8E2A;&#x5668;</span>
+    unmatched_trackers = []
+    <span class="hljs-keyword">for</span> t, trk <span class="hljs-keyword">in</span> enumerate(trackers):
+        <span class="hljs-keyword">if</span> t <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> matched_indices[:, <span class="hljs-number">1</span>]:
+            unmatched_trackers.append(t)
+    <span class="hljs-comment"># &#x5C06;&#x5339;&#x914D;&#x6210;&#x529F;&#x7684;&#x8DDF;&#x8E2A;&#x6846;&#x653E;&#x5165;matches&#x4E2D;</span>
+    matches = []
+    <span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> matched_indices:
+        <span class="hljs-comment"># &#x8FC7;&#x6EE4;&#x6389;IOU&#x4F4E;&#x7684;&#x5339;&#x914D;&#xFF0C;&#x5C06;&#x5176;&#x653E;&#x5165;&#x5230;unmatched_detections&#x548C;unmatched_trackers</span>
+        <span class="hljs-keyword">if</span> iou_matrix[m[<span class="hljs-number">0</span>], m[<span class="hljs-number">1</span>]] &lt; iou_threshold:
+            unmatched_detections.append(m[<span class="hljs-number">0</span>])
+            unmatched_trackers.append(m[<span class="hljs-number">1</span>])
+        <span class="hljs-comment"># &#x6EE1;&#x8DB3;&#x6761;&#x4EF6;&#x7684;&#x4EE5;[[d,t]...]&#x7684;&#x5F62;&#x5F0F;&#x653E;&#x5165;matches&#x4E2D;</span>
+        <span class="hljs-keyword">else</span>:
+            matches.append(m.reshape(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>))
+    <span class="hljs-comment"># &#x521D;&#x59CB;&#x5316;matches,&#x4EE5;np.array&#x7684;&#x5F62;&#x5F0F;&#x8FD4;&#x56DE;</span>
+    <span class="hljs-keyword">if</span> len(matches) == <span class="hljs-number">0</span>:
+        matches = np.empty((<span class="hljs-number">0</span>, <span class="hljs-number">2</span>), dtype=int)
+    <span class="hljs-keyword">else</span>:
+        matches = np.concatenate(matches, axis=<span class="hljs-number">0</span>)
+
+    <span class="hljs-keyword">return</span> matches, np.array(unmatched_detections), np.array(unmatched_trackers)
+</code></pre>
+<hr>
+<p>&#x603B;&#x7ED3;&#xFF1A;</p>
+<p>&#x5229;&#x7528;&#x5308;&#x7259;&#x5229;&#x7B97;&#x6CD5;&#x5B8C;&#x6210;&#x76EE;&#x6807;&#x68C0;&#x6D4B;&#x6846;&#x548C;&#x8DDF;&#x8E2A;&#x6846;&#x7684;&#x5339;&#x914D;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Hungrarian.html" class="navigation navigation-prev " aria-label="Previous page: 3.6. 匈牙利算法">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="deepsort.html" class="navigation navigation-next " aria-label="Next page: 3.8. SORT/deepSORT ">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"3.7. 数据关联","level":"1.4.7","depth":2,"next":{"title":"3.8. SORT/deepSORT ","level":"1.4.8","depth":2,"path":"车流量检测实现/deepsort.md","ref":"车流量检测实现/deepsort.md","articles":[]},"previous":{"title":"3.6. 匈牙利算法","level":"1.4.6","depth":2,"path":"车流量检测实现/Hungrarian.md","ref":"车流量检测实现/Hungrarian.md","articles":[]},"dir":"ltr"},"config":{"plugins":["code","splitter","expandable-chapters","chart","graph","katex"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"graph":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"chart":{"type":"c3"},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"opencv","language":"zh-hans","output.name":"site","gitbook":"3.2.3"},"file":{"path":"车流量检测实现/associate.md","mtime":"2020-05-02T04:06:16.380Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-12-18T03:04:21.171Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

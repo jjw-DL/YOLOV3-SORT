@@ -1,0 +1,599 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>3.12. 车流量统计 · opencv</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-code/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-katex/katex.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="result.html" />
+    
+    
+    <link rel="prev" href="dection.html" />
+    
+
+    <script src="../gitbook/gitbook-plugin-graph/d3.min.js"></script>
+    <script src="../gitbook/gitbook-plugin-graph/function-plot.js"></script>    
+
+    
+    <link rel="stylesheet" href="../gitbook/gitbook-plugin-chart/c3/c3.min.css">
+    <script src="../gitbook/gitbook-plugin-chart/c3/d3.min.js"></script>
+    <script src="../gitbook/gitbook-plugin-chart/c3/c3.min.js"></script>
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../项目简介/ReadMe.html">
+            
+                <a href="../项目简介/ReadMe.html">
+            
+                    
+                    1.项目简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../算法库/ReadMe.html">
+            
+                <a href="../算法库/ReadMe.html">
+            
+                    
+                    2.算法库
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../算法库/numba.html">
+            
+                <a href="../算法库/numba.html">
+            
+                    
+                    2.1. numba
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../算法库/imutils.html">
+            
+                <a href="../算法库/imutils.html">
+            
+                    
+                    2.2. imutils
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../算法库/dnn.html">
+            
+                <a href="../算法库/dnn.html">
+            
+                    
+                    2.3. cv.dnn
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="ReadMe.html">
+            
+                <a href="ReadMe.html">
+            
+                    
+                    3.车流量检测实现
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="MOT.html">
+            
+                <a href="MOT.html">
+            
+                    
+                    3.1. 多目标追踪
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="help.html">
+            
+                <a href="help.html">
+            
+                    
+                    3.2. 辅助功能
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="kalmam.html">
+            
+                <a href="kalmam.html">
+            
+                    
+                    3.3.卡尔曼滤波器 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="kalmamRelize.html">
+            
+                <a href="kalmamRelize.html">
+            
+                    
+                    3.4.卡尔曼滤波器实践 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="kalman.html">
+            
+                <a href="kalman.html">
+            
+                    
+                    3.5. 目标估计模型-卡尔曼滤波
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="Hungrarian.html">
+            
+                <a href="Hungrarian.html">
+            
+                    
+                    3.6. 匈牙利算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="associate.html">
+            
+                <a href="associate.html">
+            
+                    
+                    3.7. 数据关联
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="deepsort.html">
+            
+                <a href="deepsort.html">
+            
+                    
+                    3.8. SORT/deepSORT 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="sort.html">
+            
+                <a href="sort.html">
+            
+                    
+                    3.9.多目标追踪实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="yoloV3.html">
+            
+                <a href="yoloV3.html">
+            
+                    
+                    3.10.yoloV3模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.11" data-path="dection.html">
+            
+                <a href="dection.html">
+            
+                    
+                    3.11. 基于yoloV3的目标检测
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.12" data-path="count.html">
+            
+                <a href="count.html">
+            
+                    
+                    3.12. 车流量统计
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.13" data-path="result.html">
+            
+                <a href="result.html">
+            
+                    
+                    3.13. 视频中的车流量统计
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >3.12. 车流量统计</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="49-&#x8F66;&#x6D41;&#x91CF;&#x7EDF;&#x8BA1;">4.9. &#x8F66;&#x6D41;&#x91CF;&#x7EDF;&#x8BA1;</h1>
+<p><strong>&#x5B66;&#x4E60;&#x76EE;&#x6807;</strong></p>
+<ul>
+<li>&#x4E86;&#x89E3;&#x8F66;&#x6D41;&#x91CF;&#x7EDF;&#x8BA1;&#x7684;&#x65B9;&#x6CD5;</li>
+<li>&#x5B9E;&#x73B0;&#x8F66;&#x6D41;&#x91CF;&#x68C0;&#x6D4B;</li>
+</ul>
+<hr>
+<h1 id="1&#x57FA;&#x4E8E;&#x865A;&#x62DF;&#x7EBF;&#x5708;&#x6CD5;&#x7684;&#x8F66;&#x8F86;&#x7EDF;&#x8BA1;">1.&#x57FA;&#x4E8E;&#x865A;&#x62DF;&#x7EBF;&#x5708;&#x6CD5;&#x7684;&#x8F66;&#x8F86;&#x7EDF;&#x8BA1;</h1>
+<p>&#x57FA;&#x4E8E;&#x865A;&#x62DF;&#x7EBF;&#x5708;&#x7684;&#x8F66;&#x6D41;&#x91CF;&#x7EDF;&#x8BA1;&#x7B97;&#x6CD5;&#x539F;&#x7406;&#x4E0E;&#x4EA4;&#x901A;&#x9053;&#x8DEF;&#x4E0A;&#x7684;&#x5E38;&#x89C1;&#x7684;&#x4F20;&#x7EDF;&#x7684;&#x7269;&#x7406;&#x7EBF;&#x5708;&#x7C7B;&#x4F3C;&#xFF0C;&#x7531;&#x4E8E;&#x7269;&#x7406;&#x7EBF;&#x5708;&#x9700;&#x8981;&#x57CB;&#x8BBE;&#x5728;&#x8DEF;&#x9762;&#x4E4B;&#x4E0B;&#xFF0C;&#x56E0;&#x6B64;&#x4F1A;&#x6709;&#x5B89;&#x88C5;&#x3001;&#x7EF4;&#x62A4;&#x8D39;&#x7528;&#x9AD8;&#xFF0C;&#x9020;&#x6210;&#x8DEF;&#x9762;&#x7834;&#x574F;&#x7B49;&#x95EE;&#x9898;&#xFF0C;&#x800C;&#x91C7;&#x7528;&#x57FA;&#x4E8E;&#x89C6;&#x9891;&#x7684;&#x865A;&#x62DF;&#x7EBF;&#x5708;&#x7684;&#x8F66;&#x8F86;&#x8BA1;&#x6570;&#x65B9;&#x6CD5;&#x5B8C;&#x5168;&#x907F;&#x514D;&#x4E86;&#x4EE5;&#x4E0A;&#x95EE;&#x9898;&#xFF0C;&#x4E14;&#x53EF;&#x4EE5;&#x9488;&#x5BF9;&#x591A;&#x4E2A;&#x611F;&#x5174;&#x8DA3;&#x533A;&#x57DF;&#x8FDB;&#x884C;&#x68C0;&#x6D4B;&#x3002;</p>
+<p>&#x865A;&#x62DF;&#x7EBF;&#x5708;&#x8F66;&#x8F86;&#x8BA1;&#x6570;&#x6CD5;&#x7684;&#x539F;&#x7406;&#x662F;&#x5728;&#x91C7;&#x96C6;&#x5230;&#x7684;&#x4EA4;&#x901A;&#x6D41;&#x89C6;&#x9891;&#x4E2D;&#xFF0C;&#x5728;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x8F66;&#x8F86;&#x8BA1;&#x6570;&#x7684;&#x9053;&#x8DEF;&#x6216;&#x8DEF;&#x6BB5;&#x4E0A;&#x8BBE;&#x7F6E;&#x4E00;&#x6761;&#x6216;&#x4E00;&#x6761;&#x4EE5;&#x4E0A;&#x7684;&#x68C0;&#x6D4B;&#x7EBF;&#x5BF9;&#x901A;&#x8FC7;&#x8F66;&#x8F86;&#x8FDB;&#x884C;&#x68C0;&#x6D4B;&#xFF0C;&#x4ECE;&#x800C;&#x5B8C;&#x6210;&#x8BA1;&#x6570;&#x5DE5;&#x4F5C;&#x3002;&#x68C0;&#x6D4B;&#x7EBF;&#x7684;&#x8BBE;&#x7F6E;&#x539F;&#x5219;&#x4E00;&#x822C;&#x662F;&#x5728;&#x68C0;&#x6D4B;&#x8F66;&#x9053;&#x4E0A;&#x8BBE;&#x7F6E;&#x4E00;&#x6761;&#x5782;&#x76F4;&#x4E8E;&#x8F66;&#x9053;&#x7EBF;&#xFF0C;&#x5C45;&#x4E2D;&#x7684;&#x865A;&#x62DF;&#x7EBF;&#x6BB5;&#xFF0C;&#x901A;&#x8FC7;&#x5224;&#x65AD;&#x5176;&#x4E0E;&#x901A;&#x8FC7;&#x8F66;&#x8F86;&#x7684;&#x76F8;&#x5BF9;&#x4F4D;&#x7F6E;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x5B8C;&#x6210;&#x8F66;&#x6D41;&#x91CF;&#x7EDF;&#x8BA1;&#x7684;&#x5DE5;&#x4F5C;&#x3002;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF0C;&#x7EFF;&#x8272;&#x7684;&#x7EBF;&#x5C31;&#x662F;&#x865A;&#x62DF;&#x68C0;&#x6D4B;&#x7EBF;&#xFF1A;</p>
+<p><img src="assets/image-20191212174855489.png" alt="image-20191212174855489"></p>
+<p>&#x5728;&#x8BE5;&#x9879;&#x76EE;&#x4E2D;&#x6211;&#x4EEC;&#x8FDB;&#x884C;&#x68C0;&#x6D4B;&#x7684;&#x65B9;&#x6CD5;&#x662F;&#xFF0C;&#x8BA1;&#x7B97;&#x524D;&#x540E;&#x4E24;&#x5E27;&#x56FE;&#x50CF;&#x7684;&#x8F66;&#x8F86;&#x68C0;&#x6D4B;&#x6846;&#x7684;&#x4E2D;&#x5FC3;&#x70B9;&#x8FDE;&#x7EBF;&#xFF0C;&#x82E5;&#x8BE5;&#x8FDE;&#x7EBF;&#x4E0E;&#x68C0;&#x6D4B;&#x7EBF;&#x76F8;&#x4EA4;&#xFF0C;&#x5219;&#x8BA1;&#x6570;&#x52A0;&#x4E00;&#xFF0C;&#x5426;&#x5219;&#x8BA1;&#x6570;&#x4E0D;&#x53D8;&#x3002;</p>
+<p>&#x90A3;&#x600E;&#x4E48;&#x5224;&#x65AD;&#x4E24;&#x6761;&#x7EBF;&#x6BB5;&#x662F;&#x5426;&#x76F8;&#x4EA4;&#x5462;&#xFF1F;</p>
+<p>&#x5047;&#x8BBE;&#x6709;&#x4E24;&#x6761;&#x7EBF;&#x6BB5;AB&#xFF0C;CD&#xFF0C;&#x82E5;AB&#xFF0C;CD&#x76F8;&#x4EA4;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x786E;&#x5B9A;&#xFF1A;</p>
+<p>1.&#x7EBF;&#x6BB5;AB&#x4E0E;<strong>CD&#x6240;&#x5728;&#x7684;&#x76F4;&#x7EBF;</strong>&#x76F8;&#x4EA4;&#xFF0C;&#x5373;&#x70B9;A&#x548C;&#x70B9;B&#x5206;&#x522B;&#x5728;&#x76F4;&#x7EBF;CD&#x7684;&#x4E24;&#x8FB9;&#xFF1B;</p>
+<p>2.&#x7EBF;&#x6BB5;CD&#x4E0E;<strong>AB&#x6240;&#x5728;&#x7684;&#x76F4;&#x7EBF;</strong>&#x76F8;&#x4EA4;&#xFF0C;&#x5373;&#x70B9;C&#x548C;&#x70B9;D&#x5206;&#x522B;&#x5728;&#x76F4;&#x7EBF;AB&#x7684;&#x4E24;&#x8FB9;&#xFF1B;</p>
+<p>&#x4E0A;&#x9762;&#x4E24;&#x4E2A;&#x6761;&#x4EF6;&#x540C;&#x65F6;&#x6EE1;&#x8DB3;&#x662F;&#x4E24;&#x7EBF;&#x6BB5;&#x76F8;&#x4EA4;&#x7684;&#x5145;&#x8981;&#x6761;&#x4EF6;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x53EA;&#x9700;&#x8981;&#x8BC1;&#x660E;&#x70B9;A&#x548C;&#x70B9;B&#x5206;&#x522B;&#x5728;&#x76F4;&#x7EBF;CD&#x7684;&#x4E24;&#x8FB9;&#xFF0C;&#x70B9;C&#x548C;&#x70B9;D&#x5206;&#x522B;&#x5728;&#x76F4;&#x7EBF;AB&#x7684;&#x4E24;&#x8FB9;&#xFF0C;&#x8FD9;&#x6837;&#x4FBF;&#x53EF;&#x4EE5;&#x8BC1;&#x660E;&#x7EBF;&#x6BB5;AB&#x4E0E;CD&#x76F8;&#x4EA4;&#x4E86;&#x3002;</p>
+<p><img src="assets/image-20191212180757576.png" alt="image-20191212180757576"></p>
+<p>&#x5728;&#x4E0A;&#x56FE;&#x4E2D;&#xFF0C;&#x7EBF;&#x6BB5;AB&#x4E0E;&#x7EBF;&#x6BB5;CD&#x76F8;&#x4EA4;&#xFF0C;&#x4E8E;&#x662F;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x4E24;&#x4E2A;&#x5411;&#x91CF;AC&#xFF0C;AD&#xFF0C;C&#x548C;D&#x5206;&#x522B;&#x5728;AB&#x7684;&#x4E24;&#x8FB9;&#xFF0C;&#x5411;&#x91CF;AC&#x5728;&#x5411;&#x91CF;AB&#x7684;&#x9006;&#x65F6;&#x9488;&#x65B9;&#x5411;&#xFF0C;AB&#xD7;AC &gt; 0&#xFF1B;&#x5411;&#x91CF;AD&#x5728;&#x5411;&#x91CF;AB&#x7684;&#x987A;&#x65F6;&#x9488;&#x65B9;&#x5411;&#xFF0C;AB&#xD7;AD &lt; 0&#xFF0C;&#x4E24;&#x53C9;&#x4E58;&#x7ED3;&#x679C;&#x5F02;&#x53F7;&#x3002;</p>
+<p>&#x8FD9;&#x6837;&#xFF0C;&#x65B9;&#x6CD5;&#x5C31;&#x51FA;&#x6765;&#x4E86;&#xFF1A;<strong>&#x5982;&#x679C;&#x7EBF;&#x6BB5;CD&#x7684;&#x4E24;&#x4E2A;&#x7AEF;&#x70B9;C&#x548C;D&#xFF0C;&#x4E0E;&#x53E6;&#x4E00;&#x6761;&#x7EBF;&#x6BB5;&#x7684;&#x4E00;&#x4E2A;&#x7AEF;&#x70B9;&#xFF08;A&#x6216;B&#xFF0C;&#x53EA;&#x80FD;&#x662F;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#xFF09;&#x8FDE;&#x6210;&#x7684;&#x5411;&#x91CF;&#xFF0C;&#x4E0E;&#x5411;&#x91CF;AB&#x505A;&#x53C9;&#x4E58;&#xFF0C;&#x82E5;&#x7ED3;&#x679C;&#x5F02;&#x53F7;&#xFF0C;&#x8868;&#x793A;C&#x548C;D&#x5206;&#x522B;&#x5728;&#x76F4;&#x7EBF;AB&#x7684;&#x4E24;&#x8FB9;&#xFF0C;&#x82E5;&#x7ED3;&#x679C;&#x540C;&#x53F7;&#xFF0C;&#x5219;&#x8868;&#x793A;CD&#x4E24;&#x70B9;&#x90FD;&#x5728;AB&#x7684;&#x4E00;&#x8FB9;&#xFF0C;&#x5219;&#x80AF;&#x5B9A;&#x4E0D;&#x76F8;&#x4EA4;&#x3002;</strong></p>
+<p>&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x5229;&#x7528;&#x53C9;&#x4E58;&#x7684;&#x65B9;&#x6CD5;&#x6765;&#x5224;&#x65AD;&#x8F66;&#x8F86;&#x662F;&#x5426;&#x7ECF;&#x8FC7;&#x68C0;&#x6D4B;&#x7EBF;&#x3002;</p>
+<h1 id="2&#x5B9E;&#x73B0;">2.&#x5B9E;&#x73B0;</h1>
+<p>&#x5B9E;&#x73B0;&#x8F66;&#x6D41;&#x91CF;&#x68C0;&#x6D4B;&#x7684;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p>1.&#x68C0;&#x6D4B;AB&#x548C;CD&#x4E24;&#x6761;&#x76F4;&#x7EBF;&#x662F;&#x5426;&#x76F8;&#x4EA4;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x68C0;&#x6D4B;AB&#x548C;CD&#x4E24;&#x6761;&#x76F4;&#x7EBF;&#x662F;&#x5426;&#x76F8;&#x4EA4;</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">intersect</span><span class="hljs-params">(A, B, C, D)</span>:</span>
+    <span class="hljs-keyword">return</span> ccw(A, C, D) != ccw(B, C, D) <span class="hljs-keyword">and</span> ccw(A, B, C) != ccw(A, B, D)
+
+<span class="hljs-comment"># &#x8BA1;&#x7B97;&#x6709;A&#xFF0C;B&#xFF0C;C&#x4E09;&#x70B9;&#x6784;&#x6210;&#x7684;&#x5411;&#x91CF;CA&#xFF0C;BA&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;&#xFF0C;</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">ccw</span><span class="hljs-params">(A, B, C)</span>:</span>
+    <span class="hljs-keyword">return</span> (C[<span class="hljs-number">1</span>] - A[<span class="hljs-number">1</span>]) * (B[<span class="hljs-number">0</span>] - A[<span class="hljs-number">0</span>]) &gt; (B[<span class="hljs-number">1</span>] - A[<span class="hljs-number">1</span>]) * (C[<span class="hljs-number">0</span>] - A[<span class="hljs-number">0</span>])
+</code></pre>
+<ol>
+<li>&#x904D;&#x5386;&#x8DDF;&#x8E2A;&#x6846;&#x5224;&#x65AD;&#x5176;&#x4E0E;&#x68C0;&#x6D4B;&#x7EBF;&#x662F;&#x5426;&#x76F8;&#x4EA4;&#xFF0C;&#x5E76;&#x8FDB;&#x884C;&#x8F66;&#x8F86;&#x8BA1;&#x6570;</li>
+</ol>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x904D;&#x5386;&#x8DDF;&#x8E2A;&#x6846;</span>
+<span class="hljs-keyword">for</span> box <span class="hljs-keyword">in</span> boxes:
+    (x, y) = (int(box[<span class="hljs-number">0</span>]), int(box[<span class="hljs-number">1</span>]))  <span class="hljs-comment"># &#x8BA1;&#x7B97;&#x8DDF;&#x8E2A;&#x6846;&#x7684;&#x5DE6;&#x4E0A;&#x89D2;&#x5750;&#x6807;</span>
+    (w, h) = (int(box[<span class="hljs-number">2</span>]), int(box[<span class="hljs-number">3</span>]))  <span class="hljs-comment"># &#x8BA1;&#x7B97;&#x8DDF;&#x8E2A;&#x6846;&#x7684;&#x5BBD;&#x548C;&#x9AD8;</span>
+
+    color = [int(c) <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> COLORS[indexIDs[i] % len(COLORS)]]  <span class="hljs-comment"># &#x5BF9;&#x65B9;&#x6846;&#x7684;&#x989C;&#x8272;&#x8FDB;&#x884C;&#x8BBE;&#x5B9A;</span>
+    cv2.rectangle(frame, (x, y), (w, h), color, <span class="hljs-number">2</span>)  <span class="hljs-comment"># &#x5C06;&#x65B9;&#x6846;&#x7ED8;&#x5236;&#x5728;&#x753B;&#x9762;&#x4E0A;</span>
+
+    <span class="hljs-string">&quot;&quot;&quot;
+    &#x6839;&#x636E;&#x5F53;&#x524D;&#x5E27;&#x7684;&#x68C0;&#x6D4B;&#x7ED3;&#x679C;&#xFF0C;&#x4E0E;&#x4E0A;&#x4E00;&#x5E27;&#x68C0;&#x6D4B;&#x7684;&#x68C0;&#x6D4B;&#x7ED3;&#x8FC7;&#xFF0C;&#x8FDB;&#x884C;&#x865A;&#x62DF;&#x7EBF;&#x5708;&#x5B8C;&#x6210;&#x8F66;&#x8F86;&#x8BA1;&#x6570;&#xFF1A;&#x8F66;&#x6D41;&#x91CF;&#x7EDF;&#x8BA1;
+    &quot;&quot;&quot;</span>
+    <span class="hljs-keyword">if</span> indexIDs[i] <span class="hljs-keyword">in</span> previous:
+        previous_box = previous[indexIDs[i]]  <span class="hljs-comment"># &#x83B7;&#x53D6;&#x4E0A;&#x4E00;&#x5E27;&#x8BC6;&#x522B;&#x7684;&#x76EE;&#x6807;&#x6846;</span>
+        (x2, y2) = (int(previous_box[<span class="hljs-number">0</span>]), int(previous_box[<span class="hljs-number">1</span>]))  <span class="hljs-comment"># &#x83B7;&#x53D6;&#x4E0A;&#x4E00;&#x5E27;&#x753B;&#x9762;&#x8FFD;&#x8E2A;&#x6846;&#x7684;&#x5DE6;&#x4E0A;&#x89D2;&#x5750;&#x6807;</span>
+        (w2, h2) = (int(previous_box[<span class="hljs-number">2</span>]), int(previous_box[<span class="hljs-number">3</span>]))  <span class="hljs-comment"># &#x83B7;&#x53D6;&#x4E0A;&#x4E00;&#x5E27;&#x753B;&#x9762;&#x8FFD;&#x8E2A;&#x6846;&#x7684;&#x5BBD;&#x548C;&#x9AD8;</span>
+        p0 = (int(x + (w - x) / <span class="hljs-number">2</span>), int(y + (h - y) / <span class="hljs-number">2</span>))  <span class="hljs-comment"># &#x83B7;&#x53D6;&#x5F53;&#x524D;&#x5E27;&#x68C0;&#x6D4B;&#x6846;&#x7684;&#x4E2D;&#x5FC3;&#x70B9;</span>
+        p1 = (int(x2 + (w2 - x2) / <span class="hljs-number">2</span>), int(y2 + (h2 - y2) / <span class="hljs-number">2</span>))  <span class="hljs-comment"># &#x83B7;&#x53D6;&#x4E0A;&#x4E00;&#x5E27;&#x68C0;&#x6D4B;&#x6846;&#x7684;&#x4E2D;&#x5FC3;&#x70B9;</span>
+        cv2.line(frame, p0, p1, color, <span class="hljs-number">3</span>)  <span class="hljs-comment"># &#x5C06;&#x524D;&#x540E;&#x4E24;&#x5E27;&#x56FE;&#x50CF;&#x7684;&#x68C0;&#x6D4B;&#x7ED3;&#x679C;&#x4E2D;&#x5FC3;&#x8FDE;&#x63A5;&#x8D77;&#x6765;</span>
+
+        <span class="hljs-string">&quot;&quot;&quot;
+                &#x8FDB;&#x884C;&#x78B0;&#x649E;&#x68C0;&#x6D4B;-&#x524D;&#x540E;&#x4E24;&#x5E27;&#x68C0;&#x6D4B;&#x6846;&#x4E2D;&#x5FC3;&#x70B9;&#x7684;&#x8FDE;&#x7EBF;&#x7A7F;&#x8FC7;&#x57FA;&#x51C6;&#x7EBF;&#xFF0C;&#x5219;&#x8FDB;&#x884C;&#x8BA1;&#x6570;
+                &quot;&quot;&quot;</span>
+        <span class="hljs-keyword">if</span> intersect(p0, p1, line[<span class="hljs-number">0</span>], line[<span class="hljs-number">1</span>]):
+            <span class="hljs-comment"># &#x603B;&#x8BA1;&#x6570;&#x52A0;1</span>
+            counter += <span class="hljs-number">1</span>
+            <span class="hljs-comment"># &#x5224;&#x65AD;&#x884C;&#x8FDB;&#x7684;&#x65B9;&#x5411;</span>
+            <span class="hljs-keyword">if</span> y2 &lt; y:
+                counter_down += <span class="hljs-number">1</span>  <span class="hljs-comment"># &#x9006;&#x5411;&#x884C;&#x9A76;+1</span>
+            <span class="hljs-keyword">else</span>:
+                counter_up += <span class="hljs-number">1</span>  <span class="hljs-comment"># &#x6B63;&#x5411;&#x884C;&#x9A76;+1</span>
+</code></pre>
+<hr>
+<p><strong>&#x603B;&#x7ED3;</strong></p>
+<ol>
+<li>&#x57FA;&#x4E8E;&#x865A;&#x62DF;&#x7EBF;&#x5708;&#x7684;&#x76EE;&#x6807;&#x68C0;&#x6D4B;&#xFF0C;&#x662F;&#x8BBE;&#x7F6E;&#x4E00;&#x4E2A;&#x5782;&#x76F4;&#x4E8E;&#x8F66;&#x9053;&#x7684;&#x68C0;&#x6D4B;&#x7EBF;&#xFF0C;&#x5224;&#x65AD;&#x8DDF;&#x8E2A;&#x8F66;&#x8F86;&#x4E0E;&#x68C0;&#x6D4B;&#x7EBF;&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;&#xFF0C;&#x5B8C;&#x6210;&#x8F66;&#x8F86;&#x8BA1;&#x6570;</li>
+<li>&#x5229;&#x7528;&#x53C9;&#x4E58;&#x7684;&#x65B9;&#x6CD5;&#x6765;&#x68C0;&#x9A8C;&#x8F66;&#x8F86;&#x662F;&#x5426;&#x4E0E;&#x68C0;&#x6D4B;&#x7EBF;&#x76F8;&#x4EA4;</li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="dection.html" class="navigation navigation-prev " aria-label="Previous page: 3.11. 基于yoloV3的目标检测">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="result.html" class="navigation navigation-next " aria-label="Next page: 3.13. 视频中的车流量统计">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"3.12. 车流量统计","level":"1.4.12","depth":2,"next":{"title":"3.13. 视频中的车流量统计","level":"1.4.13","depth":2,"path":"车流量检测实现/result.md","ref":"车流量检测实现/result.md","articles":[]},"previous":{"title":"3.11. 基于yoloV3的目标检测","level":"1.4.11","depth":2,"path":"车流量检测实现/dection.md","ref":"车流量检测实现/dection.md","articles":[]},"dir":"ltr"},"config":{"plugins":["code","splitter","expandable-chapters","chart","graph","katex"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"graph":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"chart":{"type":"c3"},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"opencv","language":"zh-hans","output.name":"site","gitbook":"3.2.3"},"file":{"path":"车流量检测实现/count.md","mtime":"2020-04-24T03:50:55.438Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-12-18T03:04:21.171Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

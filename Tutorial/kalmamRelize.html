@@ -1,0 +1,946 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>3.4.卡尔曼滤波器实践  · opencv</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-code/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-katex/katex.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="kalman.html" />
+    
+    
+    <link rel="prev" href="kalmam.html" />
+    
+
+    <script src="../gitbook/gitbook-plugin-graph/d3.min.js"></script>
+    <script src="../gitbook/gitbook-plugin-graph/function-plot.js"></script>    
+
+    
+    <link rel="stylesheet" href="../gitbook/gitbook-plugin-chart/c3/c3.min.css">
+    <script src="../gitbook/gitbook-plugin-chart/c3/d3.min.js"></script>
+    <script src="../gitbook/gitbook-plugin-chart/c3/c3.min.js"></script>
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../项目简介/ReadMe.html">
+            
+                <a href="../项目简介/ReadMe.html">
+            
+                    
+                    1.项目简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../算法库/ReadMe.html">
+            
+                <a href="../算法库/ReadMe.html">
+            
+                    
+                    2.算法库
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../算法库/numba.html">
+            
+                <a href="../算法库/numba.html">
+            
+                    
+                    2.1. numba
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../算法库/imutils.html">
+            
+                <a href="../算法库/imutils.html">
+            
+                    
+                    2.2. imutils
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../算法库/dnn.html">
+            
+                <a href="../算法库/dnn.html">
+            
+                    
+                    2.3. cv.dnn
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="ReadMe.html">
+            
+                <a href="ReadMe.html">
+            
+                    
+                    3.车流量检测实现
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="MOT.html">
+            
+                <a href="MOT.html">
+            
+                    
+                    3.1. 多目标追踪
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="help.html">
+            
+                <a href="help.html">
+            
+                    
+                    3.2. 辅助功能
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="kalmam.html">
+            
+                <a href="kalmam.html">
+            
+                    
+                    3.3.卡尔曼滤波器 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.4" data-path="kalmamRelize.html">
+            
+                <a href="kalmamRelize.html">
+            
+                    
+                    3.4.卡尔曼滤波器实践 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="kalman.html">
+            
+                <a href="kalman.html">
+            
+                    
+                    3.5. 目标估计模型-卡尔曼滤波
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="Hungrarian.html">
+            
+                <a href="Hungrarian.html">
+            
+                    
+                    3.6. 匈牙利算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="associate.html">
+            
+                <a href="associate.html">
+            
+                    
+                    3.7. 数据关联
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="deepsort.html">
+            
+                <a href="deepsort.html">
+            
+                    
+                    3.8. SORT/deepSORT 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="sort.html">
+            
+                <a href="sort.html">
+            
+                    
+                    3.9.多目标追踪实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="yoloV3.html">
+            
+                <a href="yoloV3.html">
+            
+                    
+                    3.10.yoloV3模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.11" data-path="dection.html">
+            
+                <a href="dection.html">
+            
+                    
+                    3.11. 基于yoloV3的目标检测
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.12" data-path="count.html">
+            
+                <a href="count.html">
+            
+                    
+                    3.12. 车流量统计
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.13" data-path="result.html">
+            
+                <a href="result.html">
+            
+                    
+                    3.13. 视频中的车流量统计
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >3.4.卡尔曼滤波器实践 </a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="34&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x5668;&#x5B9E;&#x8DF5;">3.4.&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x5668;&#x5B9E;&#x8DF5;</h1>
+<p><strong>&#x5B66;&#x4E60;&#x76EE;&#x6807;</strong></p>
+<ul>
+<li>&#x4E86;&#x89E3;filterpy&#x5DE5;&#x5177;&#x5305;</li>
+<li>&#x77E5;&#x9053;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x7684;&#x5B9E;&#x73B0;&#x8FC7;&#x7A0B;</li>
+<li>&#x80FD;&#x591F;&#x5229;&#x7528;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x5668;&#x5B8C;&#x6210;&#x5C0F;&#x8F66;&#x76EE;&#x6807;&#x72B6;&#x6001;&#x7684;&#x9884;&#x6D4B;</li>
+</ul>
+<hr>
+<h1 id="1filterpy">1.filterpy</h1>
+<p>FilterPy&#x662F;&#x4E00;&#x4E2A;&#x5B9E;&#x73B0;&#x4E86;<strong>&#x5404;&#x79CD;&#x6EE4;&#x6CE2;&#x5668;&#x7684;Python&#x6A21;&#x5757;</strong>&#xFF0C;&#x5B83;&#x5B9E;&#x73B0;&#x8457;&#x540D;&#x7684;<strong>&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;</strong>&#x548C;<strong>&#x7C92;&#x5B50;&#x6EE4;&#x6CE2;&#x5668;</strong>&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x8C03;&#x7528;&#x8BE5;&#x5E93;&#x5B8C;&#x6210;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x5668;&#x5B9E;&#x73B0;&#x3002;&#x5176;&#x4E2D;&#x7684;&#x4E3B;&#x8981;&#x6A21;&#x5757;&#x5305;&#x62EC;&#xFF1A;</p>
+<ul>
+<li><p>filterpy.kalman</p>
+<p>&#x8BE5;&#x6A21;&#x5757;&#x4E3B;&#x8981;&#x5B9E;&#x73B0;&#x4E86;&#x5404;&#x79CD;<strong>&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x5668;</strong>&#xFF0C;&#x5305;&#x62EC;&#x5E38;&#x89C1;&#x7684;&#x7EBF;&#x6027;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x5668;&#xFF0C;&#x6269;&#x5C55;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x5668;&#x7B49;&#x3002;</p>
+</li>
+<li><p>filterpy.common</p>
+<p>&#x8BE5;&#x6A21;&#x5757;&#x4E3B;&#x8981;&#x63D0;&#x4F9B;&#x652F;&#x6301;&#x5B9E;&#x73B0;&#x6EE4;&#x6CE2;&#x7684;&#x5404;&#x79CD;&#x8F85;&#x52A9;&#x51FD;&#x6570;&#xFF0C;&#x5176;&#x4E2D;&#x8BA1;&#x7B97;&#x566A;&#x58F0;&#x77E9;&#x9635;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x7EBF;&#x6027;&#x65B9;&#x7A0B;&#x79BB;&#x6563;&#x5316;&#x7684;&#x51FD;&#x6570;&#x7B49;&#x3002;</p>
+</li>
+<li><p>filterpy.stats</p>
+<p>&#x8BE5;&#x6A21;&#x5757;&#x63D0;&#x4F9B;&#x4E0E;&#x6EE4;&#x6CE2;&#x76F8;&#x5173;&#x7684;&#x7EDF;&#x8BA1;&#x51FD;&#x6570;&#xFF0C;&#x5305;&#x62EC;&#x591A;&#x5143;&#x9AD8;&#x65AF;&#x7B97;&#x6CD5;&#xFF0C;&#x5BF9;&#x6570;&#x4F3C;&#x7136;&#x7B97;&#x6CD5;&#xFF0C;PDF&#x53CA;&#x534F;&#x65B9;&#x5DEE;&#x7B49;&#x3002;</p>
+</li>
+<li><p>filterpy.monte_carlo</p>
+<p>&#x8BE5;&#x6A21;&#x5757;&#x63D0;&#x4F9B;&#x4E86;&#x9A6C;&#x5C14;&#x79D1;&#x592B;&#x94FE;&#x8499;&#x7279;&#x5361;&#x6D1B;&#x7B97;&#x6CD5;&#xFF0C;&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x7C92;&#x5B50;&#x6EE4;&#x6CE2;&#x3002;</p>
+</li>
+</ul>
+<p>&#x5F00;&#x6E90;&#x4EE3;&#x7801;&#x5728;&#xFF1A;</p>
+<p><a href="https://github.com/rlabbe/filterpy/tree/master/filterpy/kalman" target="_blank">https://github.com/rlabbe/filterpy/tree/master/filterpy/kalman</a></p>
+<p>&#x6211;&#x4EEC;&#x4ECB;&#x7ECD;&#x4E0B;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x5668;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x4E3B;&#x8981;&#x5206;&#x4E3A;&#x9884;&#x6D4B;&#x548C;&#x66F4;&#x65B0;&#x4E24;&#x4E2A;&#x9636;&#x6BB5;&#xFF0C;&#x5728;&#x8FDB;&#x884C;&#x6EE4;&#x6CE2;&#x4E4B;&#x524D;&#xFF0C;&#x9700;&#x8981;&#x5148;&#x8FDB;&#x884C;&#x521D;&#x59CB;&#x5316;&#xFF1A;</p>
+<ul>
+<li>&#x521D;&#x59CB;&#x5316;</li>
+</ul>
+<p>&#x9884;&#x5148;&#x8BBE;&#x5B9A;<strong>&#x72B6;&#x6001;&#x53D8;&#x91CF;dim_x&#x548C;&#x89C2;&#x6D4B;&#x53D8;&#x91CF;&#x7EF4;&#x5EA6;dim_z&#x3001;&#x534F;&#x65B9;&#x5DEE;&#x77E9;&#x9635;P&#x3001;&#x8FD0;&#x52A8;&#x5F62;&#x5F0F;&#x548C;&#x89C2;&#x6D4B;&#x77E9;&#x9635;H&#x7B49;</strong>&#xFF0C;&#x4E00;&#x822C;&#x5404;&#x4E2A;&#x534F;&#x65B9;&#x5DEE;&#x77E9;&#x9635;&#x90FD;&#x4F1A;&#x521D;&#x59CB;&#x5316;&#x4E3A;&#x5355;&#x4F4D;&#x77E9;&#x9635;&#xFF0C;&#x6839;&#x636E;&#x7279;&#x5B9A;&#x7684;&#x573A;&#x666F;&#x9700;&#x8981;&#x76F8;&#x5E94;&#x7684;&#x8BBE;&#x7F6E;&#x3002;</p>
+<pre><code class="lang-python">
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, dim_x, dim_z, dim_u = <span class="hljs-number">0</span>, x = None, P = None,
+             Q = None, B = None, F = None, H = None, R = None)</span>:</span>
+    <span class="hljs-string">&quot;&quot;&quot;Kalman Filter
+        Refer to http:/github.com/rlabbe/filterpy
+
+        Method
+        -----------------------------------------
+         Predict        |        Update
+        -----------------------------------------
+                        |  K = PH^T(HPH^T + R)^-1
+        x = Fx + Bu     |  y = z - Hx
+        P = FPF^T + Q   |  x = x + Ky
+                        |  P = (1 - KH)P
+                        |  S = HPH^T + R
+        -----------------------------------------
+        note: In update unit, here is a more numerically stable way: P = (I-KH)P(I-KH)&apos; + KRK&apos;
+
+        Parameters
+        ----------
+        dim_x: int
+            dims of state variables, eg:(x,y,vx,vy)-&gt;4
+        dim_z: int
+            dims of observation variables, eg:(x,y)-&gt;2
+        dim_u: int
+            dims of control variables,eg: a-&gt;1
+            p = p + vt + 0.5at^2
+            v = v + at
+            =&gt;[p;v] = [1,t;0,1][p;v] + [0.5t^2;t]a
+        &quot;&quot;&quot;</span>
+
+    <span class="hljs-keyword">assert</span> dim_x &gt;= <span class="hljs-number">1</span>, <span class="hljs-string">&apos;dim_x must be 1 or greater&apos;</span>
+    <span class="hljs-keyword">assert</span> dim_z &gt;= <span class="hljs-number">1</span>, <span class="hljs-string">&apos;dim_z must be 1 or greater&apos;</span>
+    <span class="hljs-keyword">assert</span> dim_u &gt;= <span class="hljs-number">0</span>, <span class="hljs-string">&apos;dim_u must be 0 or greater&apos;</span>
+
+    self.dim_x = dim_x
+    self.dim_z = dim_z
+    self.dim_u = dim_u
+
+    <span class="hljs-comment"># initialization</span>
+    <span class="hljs-comment"># predict</span>
+    self.x = np.zeros((dim_x, <span class="hljs-number">1</span>)) <span class="hljs-keyword">if</span> x <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span> <span class="hljs-keyword">else</span> x      <span class="hljs-comment"># state</span>
+    self.P = np.eye(dim_x)  <span class="hljs-keyword">if</span> P <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span> <span class="hljs-keyword">else</span> P            <span class="hljs-comment"># uncertainty covariance</span>
+    self.Q = np.eye(dim_x)  <span class="hljs-keyword">if</span> Q <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span> <span class="hljs-keyword">else</span> Q            <span class="hljs-comment"># process uncertainty for prediction</span>
+    self.B = <span class="hljs-keyword">None</span> <span class="hljs-keyword">if</span> B <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span> <span class="hljs-keyword">else</span> B                      <span class="hljs-comment"># control transition matrix</span>
+    self.F = np.eye(dim_x)  <span class="hljs-keyword">if</span> F <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span> <span class="hljs-keyword">else</span> F            <span class="hljs-comment"># state transition matrix</span>
+
+    <span class="hljs-comment"># update</span>
+    self.H = np.zeros((dim_z, dim_x)) <span class="hljs-keyword">if</span> H <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span> <span class="hljs-keyword">else</span> H  <span class="hljs-comment"># Measurement function z=Hx</span>
+    self.R = np.eye(dim_z)  <span class="hljs-keyword">if</span> R <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span> <span class="hljs-keyword">else</span> R            <span class="hljs-comment"># observation uncertainty</span>
+    self._alpha_sq = <span class="hljs-number">1.</span>                              <span class="hljs-comment"># fading memory control</span>
+    self.z = np.array([[<span class="hljs-keyword">None</span>] * self.dim_z]).T       <span class="hljs-comment"># observation</span>
+    self.K = np.zeros((dim_x, dim_z))                <span class="hljs-comment"># kalman gain</span>
+    self.y = np.zeros((dim_z, <span class="hljs-number">1</span>))                    <span class="hljs-comment"># estimation error</span>
+    self.S = np.zeros((dim_z, dim_z))                <span class="hljs-comment"># system uncertainty, S = HPH^T + R</span>
+    self.SI = np.zeros((dim_z, dim_z))               <span class="hljs-comment"># inverse system uncertainty, SI = S^-1</span>
+
+    self.inv = np.linalg.inv
+    self._mahalanobis = <span class="hljs-keyword">None</span>                         <span class="hljs-comment"># Mahalanobis distance of measurement</span>
+    self.latest_state = <span class="hljs-string">&apos;init&apos;</span>                       <span class="hljs-comment"># last process name</span>
+</code></pre>
+<ul>
+<li>&#x9884;&#x6D4B;&#x9636;&#x6BB5;</li>
+</ul>
+<p>&#x63A5;&#x4E0B;&#x6765;&#x8FDB;&#x5165;&#x9884;&#x6D4B;&#x73AF;&#x8282;&#xFF0C;&#x4E3A;&#x4E86;&#x4FDD;&#x8BC1;&#x901A;&#x7528;&#x6027;&#xFF0C;&#x5F15;&#x5165;&#x4E86;&#x9057;&#x5FD8;&#x7CFB;&#x6570;&#x3B1;&#xFF0C;&#x5176;&#x4F5C;&#x7528;&#x5728;&#x4E8E;&#x8C03;&#x8282;&#x5BF9;&#x8FC7;&#x5F80;&#x4FE1;&#x606F;&#x7684;&#x4F9D;&#x8D56;&#x7A0B;&#x5EA6;&#xFF0C;&#x3B1;&#x8D8A;&#x5927;&#x5BF9;&#x5386;&#x53F2;&#x4FE1;&#x606F;&#x7684;&#x4F9D;&#x8D56;&#x8D8A;&#x5C0F;&#xFF1A;</p>
+<p><img src="kalmamRelize.assets/image-20200501135326967.png" alt="image-20200501135326967"></p>
+<p>&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-python">
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">predict</span><span class="hljs-params">(self, u = None, B = None, F = None, Q = None)</span>:</span>
+    <span class="hljs-string">&quot;&quot;&quot;
+    Predict next state (prior) using the Kalman filter state propagation equations:
+                         x = Fx + Bu
+                         P = fading_memory*FPF^T + Q
+
+    Parameters
+    ----------
+
+    u : ndarray
+        Optional control vector. If not `None`, it is multiplied by B
+        to create the control input into the system.
+
+    B : ndarray of (dim_x, dim_z), or None
+        Optional control transition matrix; a value of None
+        will cause the filter to use `self.B`.
+
+    F : ndarray of (dim_x, dim_x), or None
+        Optional state transition matrix; a value of None
+        will cause the filter to use `self.F`.
+
+    Q : ndarray of (dim_x, dim_x), scalar, or None
+        Optional process noise matrix; a value of None will cause the
+        filter to use `self.Q`.
+    &quot;&quot;&quot;</span>
+
+    <span class="hljs-keyword">if</span> B <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span>:
+        B = self.B
+    <span class="hljs-keyword">if</span> F <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span>:
+        F = self.F
+    <span class="hljs-keyword">if</span> Q <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span>:
+        Q = self.Q
+    <span class="hljs-keyword">elif</span> np.isscalar(Q):
+        Q = np.eye(self.dim_x) * Q
+
+    <span class="hljs-comment"># x = Fx + Bu</span>
+    <span class="hljs-keyword">if</span> B <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">None</span> <span class="hljs-keyword">and</span> u <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">None</span>:
+        self.x = F @ self.x + B @ u
+    <span class="hljs-keyword">else</span>:
+        self.x = F @ self.x
+
+    <span class="hljs-comment"># P = fading_memory*FPF&apos; + Q</span>
+    self.P = self._alpha_sq * (F @ self.P @ F.T) + Q
+    self.latest_state = <span class="hljs-string">&apos;predict&apos;</span>
+</code></pre>
+<ul>
+<li>&#x66F4;&#x65B0;&#x9636;&#x6BB5;    </li>
+</ul>
+<p>&#x6309;&#x4E0B;&#x5F0F;&#x8FDB;&#x884C;&#x72B6;&#x6001;&#x7684;&#x66F4;&#x65B0;&#xFF1A;
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtable><mtr><mtd><mrow><mrow><mi mathvariant="bold">K</mi></mrow></mrow></mtd><mtd><mrow><mrow></mrow><mo>=</mo><mrow><mi mathvariant="bold">P</mi></mrow><mo>&#x2217;</mo><msup><mrow><mi mathvariant="bold">H</mi></mrow><mi>T</mi></msup><mo>&#x2217;</mo><msup><mrow><mo>(</mo><mo>(</mo><mrow><mi mathvariant="bold">H</mi></mrow><mo>&#x2217;</mo><mrow><mi mathvariant="bold">P</mi></mrow><mo>&#x2217;</mo><msup><mrow><mi mathvariant="bold">H</mi></mrow><mi mathvariant="bold">T</mi></msup><mo>)</mo><mo>+</mo><mrow><mi mathvariant="bold">R</mi></mrow><mo>)</mo></mrow><mrow><mo>&#x2212;</mo><mn>1</mn></mrow></msup></mrow></mtd></mtr><mtr><mtd><mrow><mrow><mi mathvariant="bold">x</mi></mrow></mrow></mtd><mtd><mrow><mrow></mrow><mo>=</mo><mrow><mi mathvariant="bold">x</mi></mrow><mo>+</mo><mo>(</mo><mrow><mi mathvariant="bold">K</mi></mrow><mo>&#x2217;</mo><mrow><mo>(</mo><mrow><mi mathvariant="bold">z</mi></mrow><mo>&#x2212;</mo><mo>(</mo><mrow><mi mathvariant="bold">H</mi></mrow><mo>&#x2217;</mo><mrow><mi mathvariant="bold">x</mi></mrow><mo>)</mo><mo>)</mo></mrow><mo>)</mo></mrow></mtd></mtr><mtr><mtd><mrow><mrow><mi mathvariant="bold">P</mi></mrow></mrow></mtd><mtd><mrow><mrow></mrow><mo>=</mo><mo>(</mo><mrow><mi mathvariant="bold">I</mi></mrow><mo>&#x2212;</mo><mo>(</mo><mrow><mi mathvariant="bold">K</mi></mrow><mo>&#x2217;</mo><mrow><mi mathvariant="bold">H</mi></mrow><mo>)</mo><mo>)</mo><mo>&#x2217;</mo><mrow><mi mathvariant="bold">P</mi></mrow></mrow></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">
+\begin{aligned}  \mathbf{K} &amp;= \mathbf{P} * \mathbf{H}^T * \mathbf{((\mathbf{H} * \mathbf{P} * \mathbf{H}^T) + \mathbf{R})}^{-1} \\ \mathbf{x} &amp;= \mathbf{x} + (\mathbf{K} * \mathbf{(\mathbf{z} - (\mathbf{H} * \mathbf{x}))}) \\ \mathbf{P} &amp;= (\mathbf{I} - (\mathbf{K} * \mathbf{H})) * \mathbf{P} \end{aligned}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:2.1091925em;"></span><span class="strut bottom" style="height:3.7183850000000005em;vertical-align:-1.6091925000000007em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist"><span style="top:-1.1508075em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">K</span></span></span></span><span style="top:0.04919250000000047em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">x</span></span></span></span><span style="top:1.2491925000000006em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">P</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="col-align-l"><span class="vlist"><span style="top:-1.1508075em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"></span><span class="mrel">=</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">P</span></span><span class="mbin">&#x2217;</span><span class="mord"><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">H</span></span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mbin">&#x2217;</span><span class="mord"><span class="mord displaystyle textstyle uncramped"><span class="mopen">(</span><span class="mopen">(</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">H</span></span><span class="mbin">&#x2217;</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">P</span></span><span class="mbin">&#x2217;</span><span class="mord"><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">H</span></span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathbf mtight">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mclose">)</span><span class="mbin">+</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">R</span></span><span class="mclose">)</span></span><span class="msupsub"><span class="vlist"><span style="top:-0.5072769999999999em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mtight">&#x2212;</span><span class="mord mathrm mtight">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span><span style="top:0.04919250000000047em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"></span><span class="mrel">=</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">x</span></span><span class="mbin">+</span><span class="mopen">(</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">K</span></span><span class="mbin">&#x2217;</span><span class="mord displaystyle textstyle uncramped"><span class="mopen">(</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">z</span></span><span class="mbin">&#x2212;</span><span class="mopen">(</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">H</span></span><span class="mbin">&#x2217;</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">x</span></span><span class="mclose">)</span><span class="mclose">)</span></span><span class="mclose">)</span></span></span><span style="top:1.2491925000000006em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"></span><span class="mrel">=</span><span class="mopen">(</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">I</span></span><span class="mbin">&#x2212;</span><span class="mopen">(</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">K</span></span><span class="mbin">&#x2217;</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">H</span></span><span class="mclose">)</span><span class="mclose">)</span><span class="mbin">&#x2217;</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">P</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span></span></span>
+&#x4E5F;&#x53EF;&#x4EE5;&#x5199;&#x4E3A;&#xFF1A;
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtable><mtr><mtd><mrow><mrow><mi mathvariant="bold">y</mi></mrow></mrow></mtd><mtd><mrow><mrow></mrow><mo>=</mo><mrow><mi mathvariant="bold">z</mi></mrow><mo>&#x2212;</mo><mo>(</mo><mrow><mi mathvariant="bold">H</mi></mrow><mo>&#x2217;</mo><mrow><mi mathvariant="bold">x</mi></mrow><mo>)</mo></mrow></mtd></mtr><mtr><mtd><mrow><mrow><mi mathvariant="bold">S</mi></mrow></mrow></mtd><mtd><mrow><mrow></mrow><mo>=</mo><mo>(</mo><mrow><mi mathvariant="bold">H</mi></mrow><mo>&#x2217;</mo><mrow><mi mathvariant="bold">P</mi></mrow><mo>&#x2217;</mo><msup><mrow><mi mathvariant="bold">H</mi></mrow><mi>T</mi></msup><mo>)</mo><mo>+</mo><mrow><mi mathvariant="bold">R</mi></mrow></mrow></mtd></mtr><mtr><mtd><mrow><mrow><mi mathvariant="bold">K</mi></mrow></mrow></mtd><mtd><mrow><mrow></mrow><mo>=</mo><mrow><mi mathvariant="bold">P</mi></mrow><mo>&#x2217;</mo><msup><mrow><mi mathvariant="bold">H</mi></mrow><mi>T</mi></msup><mo>&#x2217;</mo><msup><mrow><mi mathvariant="bold">S</mi></mrow><mrow><mo>&#x2212;</mo><mn>1</mn></mrow></msup></mrow></mtd></mtr><mtr><mtd><mrow><mrow><mi mathvariant="bold">x</mi></mrow></mrow></mtd><mtd><mrow><mrow></mrow><mo>=</mo><mrow><mi mathvariant="bold">x</mi></mrow><mo>+</mo><mo>(</mo><mrow><mi mathvariant="bold">K</mi></mrow><mo>&#x2217;</mo><mrow><mi mathvariant="bold">y</mi></mrow><mo>)</mo></mrow></mtd></mtr><mtr><mtd><mrow><mrow><mi mathvariant="bold">P</mi></mrow></mrow></mtd><mtd><mrow><mrow></mrow><mo>=</mo><mo>(</mo><mrow><mi mathvariant="bold">I</mi></mrow><mo>&#x2212;</mo><mo>(</mo><mrow><mi mathvariant="bold">K</mi></mrow><mo>&#x2217;</mo><mrow><mi mathvariant="bold">H</mi></mrow><mo>)</mo><mo>)</mo><mo>&#x2217;</mo><mrow><mi mathvariant="bold">P</mi></mrow></mrow></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">
+\begin{aligned} \mathbf{y} &amp;= \mathbf{z} - (\mathbf{H} * \mathbf{x}) \\ \mathbf{S} &amp;= (\mathbf{H} * \mathbf{P} * \mathbf{H}^T) + \mathbf{R} \\ \mathbf{K} &amp;= \mathbf{P} * \mathbf{H}^T * \mathbf{S}^{-1} \\ \mathbf{x} &amp;= \mathbf{x} + (\mathbf{K} * \mathbf{y}) \\ \mathbf{P} &amp;= (\mathbf{I} - (\mathbf{K} * \mathbf{H})) * \mathbf{P} \end{aligned}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:3.3013310000000002em;"></span><span class="strut bottom" style="height:6.1026620000000005em;vertical-align:-2.801331em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist"><span style="top:-2.4613310000000004em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf" style="margin-right:0.01597em;">y</span></span></span></span><span style="top:-1.2100000000000002em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">S</span></span></span></span><span style="top:0.041330999999999396em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">K</span></span></span></span><span style="top:1.2413309999999995em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">x</span></span></span></span><span style="top:2.441331em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">P</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="col-align-l"><span class="vlist"><span style="top:-2.4613310000000004em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"></span><span class="mrel">=</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">z</span></span><span class="mbin">&#x2212;</span><span class="mopen">(</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">H</span></span><span class="mbin">&#x2217;</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">x</span></span><span class="mclose">)</span></span></span><span style="top:-1.2100000000000002em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"></span><span class="mrel">=</span><span class="mopen">(</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">H</span></span><span class="mbin">&#x2217;</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">P</span></span><span class="mbin">&#x2217;</span><span class="mord"><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">H</span></span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mclose">)</span><span class="mbin">+</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">R</span></span></span></span><span style="top:0.041330999999999396em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"></span><span class="mrel">=</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">P</span></span><span class="mbin">&#x2217;</span><span class="mord"><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">H</span></span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mbin">&#x2217;</span><span class="mord"><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">S</span></span><span class="msupsub"><span class="vlist"><span style="top:-0.41300000000000003em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mtight">&#x2212;</span><span class="mord mathrm mtight">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span><span style="top:1.2413309999999995em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"></span><span class="mrel">=</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">x</span></span><span class="mbin">+</span><span class="mopen">(</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">K</span></span><span class="mbin">&#x2217;</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf" style="margin-right:0.01597em;">y</span></span><span class="mclose">)</span></span></span><span style="top:2.441331em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"></span><span class="mrel">=</span><span class="mopen">(</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">I</span></span><span class="mbin">&#x2212;</span><span class="mopen">(</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">K</span></span><span class="mbin">&#x2217;</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">H</span></span><span class="mclose">)</span><span class="mclose">)</span><span class="mbin">&#x2217;</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">P</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span></span></span>
+&#x5176;&#x4E2D;&#xFF0C;y&#x662F;&#x6D4B;&#x91CF;&#x4F59;&#x91CF;&#xFF0C;S&#x662F;&#x6D4B;&#x91CF;&#x4F59;&#x91CF;&#x7684;&#x534F;&#x65B9;&#x5DEE;&#x77E9;&#x9635;&#x3002;</p>
+<p>&#x5728;&#x5B9E;&#x9645;&#x5E94;&#x7528;&#x4E2D;&#x4F1A;&#x505A;&#x4E00;&#x4E9B;&#x5FAE;&#x8C03;&#xFF0C;&#x4F7F;&#x534F;&#x65B9;&#x5DEE;&#x77E9;&#x9635;&#x4E3A;&#xFF1A;</p>
+<p><img src="kalmamRelize.assets/image-20200501140206655.png" alt="image-20200501140206655"></p>
+<p>&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-python">
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">update</span><span class="hljs-params">(self, z, R = None, H = None)</span>:</span>
+    <span class="hljs-string">&quot;&quot;&quot;
+    Update Process, add a new measurement (z) to the Kalman filter.
+                K = PH^T(HPH^T + R)^-1
+                y = z - Hx
+                x = x + Ky
+                P = (1 - KH)P or P = (I-KH)P(I-KH)&apos; + KRK&apos;
+
+    If z is None, nothing is computed.
+
+    Parameters
+    ----------
+    z : (dim_z, 1): array_like
+        measurement for this update. z can be a scalar if dim_z is 1,
+        otherwise it must be convertible to a column vector.
+
+    R : ndarray, scalar, or None
+        Optionally provide R to override the measurement noise for this
+        one call, otherwise  self.R will be used.
+
+    H : ndarray, or None
+        Optionally provide H to override the measurement function for this
+        one call, otherwise self.H will be used.
+    &quot;&quot;&quot;</span>
+
+    <span class="hljs-keyword">if</span> z <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span>:
+        self.z = np.array([[<span class="hljs-keyword">None</span>] * self.dim_z]).T
+        self.y = np.zeros((self.dim_z, <span class="hljs-number">1</span>))
+        <span class="hljs-keyword">return</span>
+
+    z = reshape_z(z, self.dim_z, self.x.ndim)
+
+    <span class="hljs-keyword">if</span> R <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span>:
+        R = self.R
+    <span class="hljs-keyword">elif</span> np.isscalar(R):
+        R = np.eye(self.dim_z) * R
+
+    <span class="hljs-keyword">if</span> H <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span>:
+        H = self.H
+
+    <span class="hljs-keyword">if</span> self.latest_state == <span class="hljs-string">&apos;predict&apos;</span>:
+        <span class="hljs-comment"># common subexpression for speed</span>
+        PHT = self.P @ H.T
+
+        <span class="hljs-comment"># S = HPH&apos; + R</span>
+        <span class="hljs-comment"># project system uncertainty into measurement space</span>
+        self.S = H @ PHT + R
+
+        self.SI = self.inv(self.S)
+
+
+        <span class="hljs-comment"># K = PH&apos;inv(S)</span>
+        <span class="hljs-comment"># map system uncertainty into kalman gain</span>
+        self.K = PHT @ self.SI
+
+        <span class="hljs-comment"># P = (I-KH)P(I-KH)&apos; + KRK&apos;</span>
+        <span class="hljs-comment"># This is more numerically stable and works for non-optimal K vs</span>
+        <span class="hljs-comment"># the equation P = (I-KH)P usually seen in the literature.</span>
+        I_KH = np.eye(self.dim_x) - self.K @ H
+        self.P = I_KH @ self.P @ I_KH.T + self.K @ R @ self.K.T
+
+
+    <span class="hljs-comment"># y = z - Hx</span>
+    <span class="hljs-comment"># error (residual) between measurement and prediction</span>
+    self.y = z - H @ self.x
+
+    self._mahalanobis = math.sqrt(float(self.y.T @ self.SI @ self.y))
+
+    <span class="hljs-comment"># x = x + Ky</span>
+    <span class="hljs-comment"># predict new x with residual scaled by the kalman gain</span>
+
+    self.x = self.x + self.K @ self.y
+    self.latest_state = <span class="hljs-string">&apos;update&apos;</span>
+</code></pre>
+<p>&#x90A3;&#x63A5;&#x4E0B;&#x6765;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x662F;&#x7528;filterpy&#x4E2D;&#x7684;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x5668;&#x65B9;&#x6CD5;&#x5B8C;&#x6210;&#x5C0F;&#x8F66;&#x4F4D;&#x7F6E;&#x7684;&#x9884;&#x6D4B;&#x3002;</p>
+<h1 id="2&#x5C0F;&#x8F66;&#x6848;&#x4F8B;">2.&#x5C0F;&#x8F66;&#x6848;&#x4F8B;</h1>
+<p>&#x73B0;&#x5728;&#x5229;&#x7528;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x5BF9;&#x5C0F;&#x8F66;&#x7684;&#x8FD0;&#x52A8;&#x72B6;&#x6001;&#x8FDB;&#x884C;&#x9884;&#x6D4B;&#x3002;&#x4E3B;&#x8981;&#x6D41;&#x7A0B;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<ul>
+<li>&#x5BFC;&#x5165;&#x76F8;&#x5E94;&#x7684;&#x5DE5;&#x5177;&#x5305;</li>
+<li>&#x5C0F;&#x8F66;&#x8FD0;&#x52A8;&#x6570;&#x636E;&#x751F;&#x6210;</li>
+<li>&#x53C2;&#x6570;&#x521D;&#x59CB;&#x5316;</li>
+<li>&#x5229;&#x7528;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x8FDB;&#x884C;&#x5C0F;&#x8F66;&#x72B6;&#x6001;&#x9884;&#x6D4B;</li>
+<li>&#x53EF;&#x89C6;&#x5316;&#xFF1A;&#x89C2;&#x5BDF;&#x53C2;&#x6570;&#x7684;&#x53D8;&#x5316;&#x4E0E;&#x7ED3;&#x679C;</li>
+</ul>
+<p>&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x770B;&#x4E0B;&#x6574;&#x4E2A;&#x6D41;&#x7A0B;&#x5B9E;&#x73B0;&#xFF1A;</p>
+<ul>
+<li>&#x5BFC;&#x5165;&#x5305;</li>
+</ul>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> matplotlib <span class="hljs-keyword">import</span> pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">from</span> filterpy.kalman <span class="hljs-keyword">import</span> KalmanFilter
+</code></pre>
+<ul>
+<li>&#x5C0F;&#x8F66;&#x8FD0;&#x52A8;&#x6570;&#x636E;&#x751F;&#x6210;</li>
+</ul>
+<p>&#x5728;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x5047;&#x8BBE;&#x5C0F;&#x8F66;&#x4F5C;&#x901F;&#x5EA6;&#x4E3A;1&#x7684;&#x5300;&#x901F;&#x8FD0;&#x52A8;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x751F;&#x6210;1000&#x4E2A;&#x4F4D;&#x7F6E;&#xFF0C;&#x4ECE;1&#x5230;1000&#xFF0C;&#x662F;&#x5C0F;&#x8F66;&#x7684;&#x5B9E;&#x9645;&#x4F4D;&#x7F6E;</span>
+z = np.linspace(<span class="hljs-number">1</span>,<span class="hljs-number">1000</span>,<span class="hljs-number">1000</span>) 
+<span class="hljs-comment"># &#x6DFB;&#x52A0;&#x566A;&#x58F0;</span>
+mu,sigma = <span class="hljs-number">0</span>,<span class="hljs-number">1</span>
+noise = np.random.normal(mu,sigma,<span class="hljs-number">1000</span>)
+<span class="hljs-comment"># &#x5C0F;&#x8F66;&#x4F4D;&#x7F6E;&#x7684;&#x89C2;&#x6D4B;&#x503C;</span>
+z_nosie = z+noise
+</code></pre>
+<ul>
+<li>&#x53C2;&#x6570;&#x521D;&#x59CB;&#x5316;</li>
+</ul>
+<pre><code class="lang-python"><span class="hljs-comment"># dim_x &#x72B6;&#x6001;&#x5411;&#x91CF;size,&#x5728;&#x8BE5;&#x4F8B;&#x4E2D;&#x4E3A;[p,v]&#xFF0C;&#x5373;&#x4F4D;&#x7F6E;&#x548C;&#x901F;&#x5EA6;,size=2</span>
+<span class="hljs-comment"># dim_z &#x6D4B;&#x91CF;&#x5411;&#x91CF;size&#xFF0C;&#x5047;&#x8BBE;&#x5C0F;&#x8F66;&#x4E3A;&#x5300;&#x901F;&#xFF0C;&#x901F;&#x5EA6;&#x4E3A;1&#xFF0C;&#x6D4B;&#x91CF;&#x5411;&#x91CF;&#x53EA;&#x89C2;&#x6D4B;&#x4F4D;&#x7F6E;&#xFF0C;size=1</span>
+my_filter = KalmanFilter(dim_x=<span class="hljs-number">2</span>, dim_z=<span class="hljs-number">1</span>)
+
+<span class="hljs-comment"># &#x5B9A;&#x4E49;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x4E2D;&#x6240;&#x9700;&#x7684;&#x53C2;&#x6570;</span>
+<span class="hljs-comment"># x &#x521D;&#x59CB;&#x72B6;&#x6001;&#x4E3A;[0,0],&#x5373;&#x521D;&#x59CB;&#x4F4D;&#x7F6E;&#x4E3A;0&#xFF0C;&#x901F;&#x5EA6;&#x4E3A;0.</span>
+<span class="hljs-comment"># &#x8FD9;&#x4E2A;&#x521D;&#x59CB;&#x503C;&#x4E0D;&#x662F;&#x975E;&#x5E38;&#x91CD;&#x8981;&#xFF0C;&#x5728;&#x5229;&#x7528;&#x89C2;&#x6D4B;&#x503C;&#x8FDB;&#x884C;&#x66F4;&#x65B0;&#x8FED;&#x4EE3;&#x540E;&#x4F1A;&#x63A5;&#x8FD1;&#x4E8E;&#x771F;&#x5B9E;&#x503C;</span>
+my_filter.x = np.array([[<span class="hljs-number">0.</span>], [<span class="hljs-number">0.</span>]])
+
+<span class="hljs-comment"># p &#x534F;&#x65B9;&#x5DEE;&#x77E9;&#x9635;&#xFF0C;&#x8868;&#x793A;&#x72B6;&#x6001;&#x5411;&#x91CF;&#x5185;&#x4F4D;&#x7F6E;&#x4E0E;&#x901F;&#x5EA6;&#x7684;&#x76F8;&#x5173;&#x6027;</span>
+<span class="hljs-comment"># &#x5047;&#x8BBE;&#x901F;&#x5EA6;&#x4E0E;&#x4F4D;&#x7F6E;&#x6CA1;&#x5173;&#x7CFB;&#xFF0C;&#x534F;&#x65B9;&#x5DEE;&#x77E9;&#x9635;&#x4E3A;[[1,0],[0,1]]</span>
+my_filter.P = np.array([[<span class="hljs-number">1.</span>, <span class="hljs-number">0.</span>], [<span class="hljs-number">0.</span>, <span class="hljs-number">1.</span>]])
+
+<span class="hljs-comment"># F &#x521D;&#x59CB;&#x7684;&#x72B6;&#x6001;&#x8F6C;&#x79FB;&#x77E9;&#x9635;&#xFF0C;&#x5047;&#x8BBE;&#x4E3A;&#x5300;&#x901F;&#x8FD0;&#x52A8;&#x6A21;&#x578B;&#xFF0C;&#x53EF;&#x5C06;&#x5176;&#x8BBE;&#x4E3A;&#x5982;&#x4E0B;&#x6240;&#x793A;</span>
+my_filter.F = np.array([[<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>], [<span class="hljs-number">0.</span>, <span class="hljs-number">1.</span>]])
+
+<span class="hljs-comment"># Q &#x72B6;&#x6001;&#x8F6C;&#x79FB;&#x534F;&#x65B9;&#x5DEE;&#x77E9;&#x9635;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5916;&#x754C;&#x566A;&#x58F0;&#xFF0C;</span>
+<span class="hljs-comment"># &#x5728;&#x8BE5;&#x4F8B;&#x4E2D;&#x5047;&#x8BBE;&#x5C0F;&#x8F66;&#x5300;&#x901F;&#xFF0C;&#x5916;&#x754C;&#x5E72;&#x6270;&#x5C0F;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x5BF9;F&#x975E;&#x5E38;&#x786E;&#x5B9A;&#xFF0C;&#x89C9;&#x5F97;F&#x4E00;&#x5B9A;&#x4E0D;&#x4F1A;&#x51FA;&#x9519;&#xFF0C;&#x6240;&#x4EE5;Q&#x8BBE;&#x7684;&#x5F88;&#x5C0F;</span>
+my_filter.Q = np.array([[<span class="hljs-number">0.0001</span>, <span class="hljs-number">0.</span>], [<span class="hljs-number">0.</span>, <span class="hljs-number">0.0001</span>]])
+
+<span class="hljs-comment"># &#x89C2;&#x6D4B;&#x77E9;&#x9635; Hx = p</span>
+<span class="hljs-comment"># &#x5229;&#x7528;&#x89C2;&#x6D4B;&#x6570;&#x636E;&#x5BF9;&#x9884;&#x6D4B;&#x8FDB;&#x884C;&#x66F4;&#x65B0;&#xFF0C;&#x89C2;&#x6D4B;&#x77E9;&#x9635;&#x7684;&#x5DE6;&#x8FB9;&#x4E00;&#x9879;&#x4E0D;&#x80FD;&#x8BBE;&#x7F6E;&#x6210;0</span>
+my_filter.H = np.array([[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>]])
+<span class="hljs-comment"># R &#x6D4B;&#x91CF;&#x566A;&#x58F0;&#xFF0C;&#x65B9;&#x5DEE;&#x4E3A;1</span>
+my_filter.R = <span class="hljs-number">1</span>
+</code></pre>
+<ul>
+<li>&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x8FDB;&#x884C;&#x9884;&#x6D4B;</li>
+</ul>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x4FDD;&#x5B58;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x8FC7;&#x7A0B;&#x4E2D;&#x7684;&#x4F4D;&#x7F6E;&#x548C;&#x901F;&#x5EA6;</span>
+z_new_list = []
+v_new_list = []
+<span class="hljs-comment"># &#x5BF9;&#x4E8E;&#x6BCF;&#x4E00;&#x4E2A;&#x89C2;&#x6D4B;&#x503C;&#xFF0C;&#x8FDB;&#x884C;&#x4E00;&#x6B21;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2; </span>
+<span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(len(z_nosie)):
+    <span class="hljs-comment"># &#x9884;&#x6D4B;&#x8FC7;&#x7A0B; </span>
+    my_filter.predict()
+    <span class="hljs-comment"># &#x5229;&#x7528;&#x89C2;&#x6D4B;&#x503C;&#x8FDB;&#x884C;&#x66F4;&#x65B0;</span>
+    my_filter.update(z_nosie[k])
+    <span class="hljs-comment"># do something with the output</span>
+    x = my_filter.x
+    <span class="hljs-comment"># &#x6536;&#x96C6;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x540E;&#x7684;&#x901F;&#x5EA6;&#x548C;&#x4F4D;&#x7F6E;&#x4FE1;&#x606F;</span>
+    z_new_list.append(x[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>])
+    v_new_list.append(x[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>])
+</code></pre>
+<ul>
+<li><p>&#x53EF;&#x89C6;&#x5316;</p>
+</li>
+<li><p>&#x9884;&#x6D4B;&#x8BEF;&#x5DEE;&#x7684;&#x53EF;&#x89C6;&#x5316;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x4F4D;&#x79FB;&#x7684;&#x504F;&#x5DEE;</span>
+dif_list = []
+<span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(len(z)):
+    dif_list.append(z_new_list[k]-z[k])
+<span class="hljs-comment"># &#x901F;&#x5EA6;&#x7684;&#x504F;&#x5DEE;</span>
+v_dif_list = []
+<span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(len(z)):
+    v_dif_list.append(v_new_list[k]<span class="hljs-number">-1</span>)
+plt.figure(figsize=(<span class="hljs-number">20</span>,<span class="hljs-number">9</span>))
+plt.subplot(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>)
+plt.xlim(<span class="hljs-number">-50</span>,<span class="hljs-number">1050</span>)
+plt.ylim(<span class="hljs-number">-3.0</span>,<span class="hljs-number">3.0</span>)
+plt.scatter(range(len(z)),dif_list,color =<span class="hljs-string">&apos;b&apos;</span>,label = <span class="hljs-string">&quot;&#x4F4D;&#x7F6E;&#x504F;&#x5DEE;&quot;</span>)
+plt.scatter(range(len(z)),v_dif_list,color =<span class="hljs-string">&apos;y&apos;</span>,label = <span class="hljs-string">&quot;&#x901F;&#x5EA6;&#x504F;&#x5DEE;&quot;</span>)
+plt.legend()
+</code></pre>
+<p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<p><img src="kalmamRelize.assets/image-20200501142151078.png" alt="image-20200501142151078"></p>
+</li>
+</ul>
+<p>2.&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x5668;&#x53C2;&#x6570;&#x7684;&#x53D8;&#x5316;</p>
+<p>&#x9996;&#x5148;&#x5B9A;&#x4E49;&#x65B9;&#x6CD5;&#x5C06;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x5668;&#x7684;&#x53C2;&#x6570;&#x5806;&#x53E0;&#x6210;&#x4E00;&#x4E2A;&#x77E9;&#x9635;&#xFF0C;&#x53F3;&#x4E0B;&#x89D2;&#x8865;0&#xFF0C;&#x6211;&#x4EEC;&#x770B;&#x4E00;&#x4E0B;&#x53C2;&#x6570;&#x7684;&#x53D8;&#x5316;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x5C06;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x5668;&#x7684;&#x53C2;&#x6570;&#x5806;&#x53E0;&#x6210;&#x4E00;&#x4E2A;&#x77E9;&#x9635;&#xFF0C;&#x53F3;&#x4E0B;&#x89D2;&#x8865;0 </span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">filter_comb</span><span class="hljs-params">(p, f, q, h, r)</span>:</span>
+        a = np.hstack((p, f))
+        b = np.array([r, <span class="hljs-number">0</span>])
+        b = np.vstack([h, b])
+        b = np.hstack((q, b))
+        a = np.vstack((a, b))
+        <span class="hljs-keyword">return</span> a
+</code></pre>
+<p><img src="kalmamRelize.assets/image-20200501142315067.png" alt="image-20200501142315067"></p>
+<p>&#x5BF9;&#x53C2;&#x6570;&#x53D8;&#x5316;&#x8FDB;&#x884C;&#x53EF;&#x89C6;&#x5316;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x4FDD;&#x5B58;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x8FC7;&#x7A0B;&#x4E2D;&#x7684;&#x4F4D;&#x7F6E;&#x548C;&#x901F;&#x5EA6;</span>
+z_new_list = []
+v_new_list = []
+<span class="hljs-comment"># &#x5BF9;&#x4E8E;&#x6BCF;&#x4E00;&#x4E2A;&#x89C2;&#x6D4B;&#x503C;&#xFF0C;&#x8FDB;&#x884C;&#x4E00;&#x6B21;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2; </span>
+<span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>):
+    <span class="hljs-comment"># &#x9884;&#x6D4B;&#x8FC7;&#x7A0B; </span>
+    my_filter.predict()
+    <span class="hljs-comment"># &#x5229;&#x7528;&#x89C2;&#x6D4B;&#x503C;&#x8FDB;&#x884C;&#x66F4;&#x65B0;</span>
+    my_filter.update(z_nosie[k])
+    <span class="hljs-comment"># do something with the output</span>
+    x = my_filter.x
+    c = filter_comb(my_filter.P,my_filter.F,my_filter.Q,my_filter.H,my_filter.R)
+    plt.figure(figsize=(<span class="hljs-number">32</span>,<span class="hljs-number">18</span>))
+    sns.set(font_scale=<span class="hljs-number">4</span>)
+    <span class="hljs-comment">#sns.heatmap(c,square=True,annot=True,xticklabels=False,yticklabels==False,cbar=False)</span>
+    sns.heatmap(c,square=<span class="hljs-keyword">True</span>,annot=<span class="hljs-keyword">True</span>,xticklabels=<span class="hljs-keyword">False</span>,yticklabels=<span class="hljs-keyword">False</span>,cbar=<span class="hljs-keyword">False</span>)
+</code></pre>
+<p>&#x5BF9;&#x6BD4;&#x53D8;&#x6362;&#xFF1A;</p>
+<p><img src="kalmamRelize.assets/image-20200501142652282.png" alt="image-20200501142652282"></p>
+<p>&#x4ECE;&#x56FE;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#x53D8;&#x5316;&#x7684;P&#xFF0C;&#x5176;&#x4ED6;&#x7684;&#x53C2;&#x6570;F&#xFF0C;Q&#xFF0C;H,R&#x4E3A;&#x53D8;&#x6362;&#x3002;&#x53E6;&#x5916;&#x72B6;&#x6001;&#x53D8;&#x91CF;x&#x548C;&#x5361;&#x5C14;&#x66FC;&#x7CFB;&#x6570;K&#x4E5F;&#x662F;&#x53D8;&#x5316;&#x7684;&#x3002;</p>
+<p>3.&#x6982;&#x7387;&#x5BC6;&#x5EA6;&#x51FD;&#x6570;</p>
+<p>&#x4E3A;&#x4E86;&#x9A8C;&#x8BC1;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x7684;&#x7ED3;&#x679C;&#x4F18;&#x4E8E;&#x6D4B;&#x91CF;&#x7684;&#x7ED3;&#x679C;&#xFF0C;&#x7ED8;&#x5236;&#x9884;&#x6D4B;&#x7ED3;&#x679C;&#x8BEF;&#x5DEE;&#x548C;&#x6D4B;&#x91CF;&#x8BEF;&#x5DEE;&#x7684;&#x6982;&#x7387;&#x5BC6;&#x5EA6;&#x51FD;&#x6570;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x751F;&#x6210;&#x6982;&#x7387;&#x5BC6;&#x5EA6;&#x56FE;&#x50CF;</span>
+z_noise_list_std = np.std(noise)
+z_noise_list_avg = np.mean(noise)
+z_filterd_list_std = np.std(dif_list)
+<span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns 
+plt.figure(figsize=(<span class="hljs-number">16</span>,<span class="hljs-number">9</span>))
+ax = sns.kdeplot(noise,shade=<span class="hljs-keyword">True</span>,color=<span class="hljs-string">&quot;r&quot;</span>,label=<span class="hljs-string">&quot;std=%.3f&quot;</span>%z_noise_list_std)
+ax = sns.kdeplot(dif_list,shade=<span class="hljs-keyword">True</span>,color=<span class="hljs-string">&quot;g&quot;</span>,label=<span class="hljs-string">&quot;std=%.3f&quot;</span>%z_filterd_list_std)
+</code></pre>
+<p>&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="kalmamRelize.assets/image-20200501143155141.png" alt="image-20200501143155141"></p>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x5668;&#x9884;&#x6D4B;&#x7684;&#x7ED3;&#x679C;&#x8BEF;&#x5DEE;&#x65B9;&#x5DEE;&#x66F4;&#x5C0F;&#xFF0C;&#x4F18;&#x4E8E;&#x6D4B;&#x8BD5;&#x7684;&#x7ED3;&#x679C;&#x3002;</p>
+<hr>
+<p>&#x603B;&#x7ED3;&#xFF1A;</p>
+<p>1.&#x4E86;&#x89E3;filterpy&#x5DE5;&#x5177;&#x5305;</p>
+<p>FilterPy&#x662F;&#x4E00;&#x4E2A;&#x5B9E;&#x73B0;&#x4E86;<strong>&#x5404;&#x79CD;&#x6EE4;&#x6CE2;&#x5668;&#x7684;Python&#x6A21;&#x5757;</strong>&#xFF0C;&#x5B83;&#x5B9E;&#x73B0;&#x8457;&#x540D;&#x7684;<strong>&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;</strong>&#x548C;<strong>&#x7C92;&#x5B50;&#x6EE4;&#x6CE2;&#x5668;</strong>&#x3002;&#x76F4;&#x63A5;&#x8C03;&#x7528;&#x8BE5;&#x5E93;&#x5B8C;&#x6210;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x5668;&#x5B9E;&#x73B0;&#x3002;</p>
+<p>2.&#x77E5;&#x9053;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x7684;&#x5B9E;&#x73B0;&#x8FC7;&#x7A0B;</p>
+<p>&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x5668;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x4E3B;&#x8981;&#x5206;&#x4E3A;&#x9884;&#x6D4B;&#x548C;&#x66F4;&#x65B0;&#x4E24;&#x4E2A;&#x9636;&#x6BB5;&#xFF0C;&#x5728;&#x8FDB;&#x884C;&#x6EE4;&#x6CE2;&#x4E4B;&#x524D;&#xFF0C;&#x9700;&#x8981;&#x5148;&#x8FDB;&#x884C;&#x521D;&#x59CB;&#x5316;</p>
+<ul>
+<li>&#x521D;&#x59CB;&#x5316;</li>
+</ul>
+<p>&#x9884;&#x5148;&#x8BBE;&#x5B9A;<strong>&#x72B6;&#x6001;&#x53D8;&#x91CF;&#x548C;&#x89C2;&#x6D4B;&#x53D8;&#x91CF;&#x7EF4;&#x5EA6;&#x3001;&#x534F;&#x65B9;&#x5DEE;&#x77E9;&#x9635;&#x3001;&#x8FD0;&#x52A8;&#x5F62;&#x5F0F;&#x548C;&#x8F6C;&#x6362;&#x77E9;&#x9635;</strong></p>
+<ul>
+<li>&#x9884;&#x6D4B;</li>
+</ul>
+<p>&#x5BF9;&#x72B6;&#x6001;&#x53D8;&#x91CF;X&#x548C;&#x534F;&#x65B9;&#x5DEE;P&#x8FDB;&#x884C;&#x9884;&#x6D4B;</p>
+<ul>
+<li>&#x66F4;&#x65B0;</li>
+</ul>
+<p>&#x5229;&#x7528;&#x89C2;&#x6D4B;&#x7ED3;&#x679C;&#x5BF9;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x7684;&#x7ED3;&#x679C;&#x8FDB;&#x884C;&#x4FEE;&#x5F81;</p>
+<p>3.&#x80FD;&#x591F;&#x5229;&#x7528;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x5668;&#x5B8C;&#x6210;&#x5C0F;&#x8F66;&#x76EE;&#x6807;&#x72B6;&#x6001;&#x7684;&#x9884;&#x6D4B;</p>
+<ul>
+<li><p>&#x5BFC;&#x5165;&#x76F8;&#x5E94;&#x7684;&#x5DE5;&#x5177;&#x5305;</p>
+</li>
+<li><p>&#x5C0F;&#x8F66;&#x8FD0;&#x52A8;&#x6570;&#x636E;&#x751F;&#x6210;&#xFF1A;&#x5300;&#x901F;&#x8FD0;&#x52A8;&#x7684;&#x5C0F;&#x8F66;&#x6A21;&#x578B;</p>
+</li>
+<li><p>&#x53C2;&#x6570;&#x521D;&#x59CB;&#x5316;&#xFF1A;&#x5BF9;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x7684;&#x53C2;&#x6570;&#x8FDB;&#x884C;&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x5305;&#x62EC;<strong>&#x72B6;&#x6001;&#x53D8;&#x91CF;&#x548C;&#x89C2;&#x6D4B;&#x53D8;&#x91CF;&#x7EF4;&#x5EA6;&#x3001;&#x534F;&#x65B9;&#x5DEE;&#x77E9;&#x9635;&#x3001;&#x8FD0;&#x52A8;&#x5F62;&#x5F0F;&#x548C;&#x8F6C;&#x6362;&#x77E9;&#x9635;</strong>&#x7B49;</p>
+</li>
+<li><p>&#x5229;&#x7528;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x8FDB;&#x884C;&#x5C0F;&#x8F66;&#x72B6;&#x6001;&#x9884;&#x6D4B;&#xFF1A;&#x4F7F;&#x7528;Filterpy&#x5DE5;&#x5177;&#x5305;&#xFF0C;&#x8C03;&#x7528;predict&#x548C;update&#x5B8C;&#x6210;&#x5C0F;&#x8F66;&#x72B6;&#x6001;&#x7684;&#x9884;&#x6D4B;</p>
+</li>
+<li><p>&#x53EF;&#x89C6;&#x5316;&#xFF1A;&#x89C2;&#x5BDF;&#x53C2;&#x6570;&#x7684;&#x53D8;&#x5316;&#x4E0E;&#x7ED3;&#x679C;</p>
+<p>1.&#x9884;&#x6D4B;&#x8BEF;&#x5DEE;&#x7684;&#x5206;&#x5E03;&#xFF1A;p,v</p>
+<p>2.&#x53C2;&#x6570;&#x7684;&#x53D8;&#x5316;&#xFF1A;&#x53C2;&#x6570;&#x4E2D;&#x53D8;&#x5316;&#x7684;&#x662F;X&#xFF0C;P&#xFF0C;K&#xFF0C;&#x4E0D;&#x53D8;&#x7684;&#x662F;F&#xFF0C;Q&#xFF0C;H&#xFF0C;R</p>
+<ol>
+<li>&#x8BEF;&#x5DEE;&#x7684;&#x6982;&#x7387;&#x5BC6;&#x5EA6;&#x51FD;&#x6570;&#xFF1A;&#x5361;&#x5C14;&#x66FC;&#x9884;&#x6D4B;&#x7684;&#x7ED3;&#x679C;&#x4F18;&#x4E8E;&#x6D4B;&#x91CF;&#x7ED3;&#x679C;</li>
+</ol>
+</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="kalmam.html" class="navigation navigation-prev " aria-label="Previous page: 3.3.卡尔曼滤波器 ">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="kalman.html" class="navigation navigation-next " aria-label="Next page: 3.5. 目标估计模型-卡尔曼滤波">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"3.4.卡尔曼滤波器实践 ","level":"1.4.4","depth":2,"next":{"title":"3.5. 目标估计模型-卡尔曼滤波","level":"1.4.5","depth":2,"path":"车流量检测实现/kalman.md","ref":"车流量检测实现/kalman.md","articles":[]},"previous":{"title":"3.3.卡尔曼滤波器 ","level":"1.4.3","depth":2,"path":"车流量检测实现/kalmam.md","ref":"车流量检测实现/kalmam.md","articles":[]},"dir":"ltr"},"config":{"plugins":["code","splitter","expandable-chapters","chart","graph","katex"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"graph":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"chart":{"type":"c3"},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"opencv","language":"zh-hans","output.name":"site","gitbook":"3.2.3"},"file":{"path":"车流量检测实现/kalmamRelize.md","mtime":"2020-05-01T06:41:55.701Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-12-18T03:04:21.171Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

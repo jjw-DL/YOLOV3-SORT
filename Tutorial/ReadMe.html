@@ -1,0 +1,562 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>3.车流量检测实现 · opencv</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-code/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-katex/katex.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="MOT.html" />
+    
+    
+    <link rel="prev" href="../算法库/dnn.html" />
+    
+
+    <script src="../gitbook/gitbook-plugin-graph/d3.min.js"></script>
+    <script src="../gitbook/gitbook-plugin-graph/function-plot.js"></script>    
+
+    
+    <link rel="stylesheet" href="../gitbook/gitbook-plugin-chart/c3/c3.min.css">
+    <script src="../gitbook/gitbook-plugin-chart/c3/d3.min.js"></script>
+    <script src="../gitbook/gitbook-plugin-chart/c3/c3.min.js"></script>
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../项目简介/ReadMe.html">
+            
+                <a href="../项目简介/ReadMe.html">
+            
+                    
+                    1.项目简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../算法库/ReadMe.html">
+            
+                <a href="../算法库/ReadMe.html">
+            
+                    
+                    2.算法库
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../算法库/numba.html">
+            
+                <a href="../算法库/numba.html">
+            
+                    
+                    2.1. numba
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../算法库/imutils.html">
+            
+                <a href="../算法库/imutils.html">
+            
+                    
+                    2.2. imutils
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../算法库/dnn.html">
+            
+                <a href="../算法库/dnn.html">
+            
+                    
+                    2.3. cv.dnn
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4" data-path="ReadMe.html">
+            
+                <a href="ReadMe.html">
+            
+                    
+                    3.车流量检测实现
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="MOT.html">
+            
+                <a href="MOT.html">
+            
+                    
+                    3.1. 多目标追踪
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="help.html">
+            
+                <a href="help.html">
+            
+                    
+                    3.2. 辅助功能
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="kalmam.html">
+            
+                <a href="kalmam.html">
+            
+                    
+                    3.3.卡尔曼滤波器 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="kalmamRelize.html">
+            
+                <a href="kalmamRelize.html">
+            
+                    
+                    3.4.卡尔曼滤波器实践 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="kalman.html">
+            
+                <a href="kalman.html">
+            
+                    
+                    3.5. 目标估计模型-卡尔曼滤波
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="Hungrarian.html">
+            
+                <a href="Hungrarian.html">
+            
+                    
+                    3.6. 匈牙利算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="associate.html">
+            
+                <a href="associate.html">
+            
+                    
+                    3.7. 数据关联
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="deepsort.html">
+            
+                <a href="deepsort.html">
+            
+                    
+                    3.8. SORT/deepSORT 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="sort.html">
+            
+                <a href="sort.html">
+            
+                    
+                    3.9.多目标追踪实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="yoloV3.html">
+            
+                <a href="yoloV3.html">
+            
+                    
+                    3.10.yoloV3模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.11" data-path="dection.html">
+            
+                <a href="dection.html">
+            
+                    
+                    3.11. 基于yoloV3的目标检测
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.12" data-path="count.html">
+            
+                <a href="count.html">
+            
+                    
+                    3.12. 车流量统计
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.13" data-path="result.html">
+            
+                <a href="result.html">
+            
+                    
+                    3.13. 视频中的车流量统计
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >3.车流量检测实现</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="3&#x8F66;&#x6D41;&#x91CF;&#x68C0;&#x6D4B;&#x5B9E;&#x73B0;">3.&#x8F66;&#x6D41;&#x91CF;&#x68C0;&#x6D4B;&#x5B9E;&#x73B0;</h1>
+<p><strong>&#x5B66;&#x4E60;&#x76EE;&#x6807;</strong></p>
+<ul>
+<li>&#x4E86;&#x89E3;&#x591A;&#x76EE;&#x6807;&#x8DDF;&#x8E2A;&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;</li>
+<li>&#x77E5;&#x9053;&#x8F66;&#x6D41;&#x91CF;&#x7EDF;&#x8BA1;&#x7684;&#x65B9;&#x6CD5;</li>
+</ul>
+<hr>
+<p>&#x968F;&#x7740;&#x57CE;&#x5E02;&#x4EA4;&#x901A;&#x91CF;&#x7684;&#x8FC5;&#x731B;&#x589E;&#x52A0;&#xFF0C;<strong>&#x8F66;&#x6D41;&#x91CF;&#x7EDF;&#x8BA1;</strong>&#x5DF2;&#x6210;&#x4E3A;&#x667A;&#x80FD;&#x4EA4;&#x901A;&#x7CFB;&#x7EDF;&#x4E2D;&#x4E00;&#x9879;&#x5173;&#x952E;&#x6280;&#x672F;&#x548C;&#x70ED;&#x95E8;&#x7814;&#x7A76;&#x65B9;&#x5411;&#x3002;&#x9AD8;&#x6548;&#x800C;&#x7CBE;&#x786E;&#x7684;&#x8F66;&#x6D41;&#x91CF;&#x68C0;&#x6D4B;&#x53EF;&#x4EE5;&#x4EA4;&#x901A;&#x7BA1;&#x7406;&#x8005;&#x548C;&#x51B3;&#x7B56;&#x8005;&#xFF0C;&#x4EE5;&#x53CA;&#x9A7E;&#x9A76;&#x5458;&#x63D0;&#x4F9B;&#x6570;&#x636E;&#x652F;&#x6491;&#xFF0C;&#x4ECE;&#x800C;&#x4E3A;&#x4EA4;&#x901A;&#x8C03;&#x5EA6;&#xFF0C;&#x964D;&#x4F4E;&#x62E5;&#x5835;&#x60C5;&#x51B5;&#x7684;&#x53D1;&#x751F;&#xFF0C;&#x63D0;&#x9AD8;&#x9053;&#x8DEF;&#x5229;&#x7528;&#x7387;&#x6709;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x7684;&#x610F;&#x4E49;&#x3002;</p>
+<p>&#x8F66;&#x6D41;&#x91CF;&#x7EDF;&#x8BA1;&#x4E3B;&#x8981;&#x6709;&#x4EE5;&#x4E0B;&#x51E0;&#x79CD;&#x65B9;&#x5F0F;:</p>
+<ul>
+<li><p><strong>&#x4EBA;&#x5DE5;&#x7EDF;&#x8BA1;</strong>&#xFF0C;&#x9700;&#x8981;&#x6D88;&#x8017;&#x5927;&#x91CF;&#x7684;&#x4EBA;&#x529B;&#x4E14;&#x5F53;&#x5DE5;&#x4F5C;&#x4EBA;&#x5458;&#x5728;&#x957F;&#x65F6;&#x95F4;&#x8BA1;&#x6570;&#x540E;&#x4F1A;&#x56E0;&#x75B2;&#x60EB;&#x9020;&#x6210;&#x6F0F;&#x68C0;&#x6216;&#x91CD;&#x590D;&#x8BA1;&#x6570;&#xFF0C;&#x7EDF;&#x8BA1;&#x7ED3;&#x679C;&#x5177;&#x6709;&#x4E0D;&#x53EF;&#x9A8C;&#x8BC1;&#x6027;&#x3002;</p>
+</li>
+<li><p>&#x901A;&#x8FC7;&#x5B89;&#x88C5;&#x53EF;&#x63A5;&#x89E6;&#x5F0F;&#x6216;&#x4E0D;&#x53EF;&#x63A5;&#x89E6;&#x5F0F;&#x7684;<strong>&#x4F20;&#x611F;&#x5668;</strong>&#x4E8E;&#x8DEF;&#x9762;&#x8FDB;&#x884C;&#x8F66;&#x8F86;&#x8BA1;&#x6570;&#xFF0C;&#x53EF;&#x63A5;&#x89E6;&#x5F0F;&#x4F20;&#x611F;&#x5668;&#x4E00;&#x822C;&#x94FA;&#x8BBE;&#x4E8E;&#x9053;&#x8DEF;&#x4E0B;&#x65B9;&#xFF0C;&#x5F53;&#x8F66;&#x8F86;&#x7ECF;&#x8FC7;&#x65F6;&#xFF0C;&#x4F20;&#x611F;&#x5668;&#x5185;&#x90E8;&#x7684;&#x7535;&#x538B;&#xFF0C;&#x78C1;&#x573A;&#x6216;&#x538B;&#x529B;&#x4F1A;&#x53D1;&#x751F;&#x53D8;&#x6362;&#x5F2F;&#x6210;&#x8F66;&#x8F86;&#x8BA1;&#x6570;&#x3002;&#x4F46;&#x8FD9;&#x7C7B;&#x4F20;&#x611F;&#x5668;&#x7684;&#x5B89;&#x88C5;&#x548C;&#x7EF4;&#x62A4;&#x8D39;&#x7528;&#x5F88;&#x9AD8;&#xFF0C;&#x73B0;&#x5728;&#x5DF2;&#x4E0D;&#x518D;&#x5927;&#x91CF;&#x94FA;&#x8BBE;&#x3002;&#x4E0D;&#x53EF;&#x63A5;&#x89E6;&#x5F0F;&#x7684;&#x5305;&#x62EC;&#x8D85;&#x58F0;&#xFF0C;&#x7EA2;&#x5916;&#xFF0C;&#x96F7;&#x8FBE;&#x4F20;&#x611F;&#x5668;&#x7B49;&#xFF0C;&#x8FD9;&#x7C7B;&#x5BB9;&#x6613;&#x53D7;&#x5230;&#x6076;&#x52A3;&#x5929;&#x6C14;&#x7684;&#x5F71;&#x54CD;&#x4F7F;&#x68C0;&#x6D4B;&#x7CBE;&#x5EA6;&#x964D;&#x4F4E;&#x3002;</p>
+</li>
+<li><p><strong>&#x57FA;&#x4E8E;&#x89C6;&#x9891;&#x7684;&#x8F66;&#x6D41;&#x91CF;&#x7EDF;&#x8BA1;</strong>&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x672C;&#x9879;&#x76EE;&#x4E2D;&#x5B9E;&#x73B0;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+</li>
+</ul>
+<p>&#x8BE5;&#x9879;&#x76EE;&#x5BF9;&#x8F93;&#x5165;&#x7684;&#x89C6;&#x9891;&#x8FDB;&#x884C;&#x5904;&#x7406;&#xFF0C;&#x4E3B;&#x8981;&#x5305;&#x62EC;&#x4EE5;&#x4E0B;&#x51E0;&#x4E2A;&#x6B65;&#x9AA4;&#xFF1A;</p>
+<ul>
+<li><p>&#x4F7F;&#x7528;yoloV3&#x6A21;&#x578B;&#x8FDB;&#x884C;<strong>&#x76EE;&#x6807;&#x68C0;&#x6D4B;</strong>&#xFF0C;</p>
+</li>
+<li><p>&#x7136;&#x540E;&#x4F7F;&#x7528;SORT&#x7B97;&#x6CD5;&#x8FDB;&#x884C;<strong>&#x76EE;&#x6807;&#x8FFD;&#x8E2A;</strong>&#xFF0C;&#x4F7F;&#x7528;<strong>&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x5668;</strong>&#x8FDB;&#x884C;&#x76EE;&#x6807;&#x4F4D;&#x7F6E;&#x9884;&#x6D4B;&#xFF0C;&#x5E76;&#x5229;&#x7528;<strong>&#x5308;&#x7259;&#x5229;&#x7B97;&#x6CD5;</strong>&#x5BF9;&#x6BD4;&#x76EE;&#x6807;&#x7684;&#x76F8;&#x4F3C;&#x5EA6;&#xFF0C;&#x5B8C;&#x6210;&#x8F66;&#x8F86;&#x76EE;&#x6807;&#x8FFD;&#x8E2A;&#xFF0C;</p>
+</li>
+<li><p>&#x5229;&#x7528;<strong>&#x865A;&#x62DF;&#x7EBF;&#x5708;</strong>&#x7684;&#x601D;&#x60F3;&#x5B9E;&#x73B0;&#x8F66;&#x8F86;&#x76EE;&#x6807;&#x7684;&#x8BA1;&#x6570;&#xFF0C;&#x5B8C;&#x6210;&#x8F66;&#x6D41;&#x91CF;&#x7684;&#x7EDF;&#x8BA1;&#x3002;</p>
+<p>&#x9879;&#x76EE;&#x6D41;&#x7A0B;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;</p>
+</li>
+</ul>
+<p><img src="assets/image-20191212183238518.png" alt="image-20191212183238518"></p>
+<hr>
+<p><strong>&#x603B;&#x7ED3;</strong></p>
+<ul>
+<li>&#x76EE;&#x6807;&#x8DDF;&#x8E2A;&#x65B9;&#x6CD5;&#xFF1A;&#x4F7F;&#x7528;&#x7684;&#x662F;<strong>sort&#x7B97;&#x6CD5;</strong>&#xFF0C;&#x5176;&#x4E2D;&#x4F7F;&#x7528;<strong>&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x5668;</strong>&#x5BF9;&#x76EE;&#x6807;&#x4F4D;&#x7F6E;&#x8FDB;&#x884C;&#x4F30;&#x8BA1;&#xFF0C;&#x5229;&#x7528;<strong>&#x5308;&#x7259;&#x5229;&#x7B97;&#x6CD5;</strong>&#x8FDB;&#x884C;&#x76EE;&#x6807;&#x5173;&#x8054;</li>
+<li>&#x8F66;&#x6D41;&#x91CF;&#x8BA1;&#x6570;&#xFF1A;&#x4F7F;&#x7528;<strong>&#x865A;&#x62DF;&#x7EBF;&#x5708;</strong>&#x7B97;&#x6CD5;&#x5BF9;&#x8F66;&#x8F86;&#x8FDB;&#x884C;&#x8BA1;&#x6570;</li>
+</ul>
+<p>&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x5C06;&#x6309;&#x7167;&#x6D41;&#x7A0B;&#x5BF9;&#x8BE5;&#x9879;&#x76EE;&#x8FDB;&#x884C;&#x4ECB;&#x7ECD;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../算法库/dnn.html" class="navigation navigation-prev " aria-label="Previous page: 2.3. cv.dnn">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="MOT.html" class="navigation navigation-next " aria-label="Next page: 3.1. 多目标追踪">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"3.车流量检测实现","level":"1.4","depth":1,"next":{"title":"3.1. 多目标追踪","level":"1.4.1","depth":2,"path":"车流量检测实现/MOT.md","ref":"车流量检测实现/MOT.md","articles":[]},"previous":{"title":"2.3. cv.dnn","level":"1.3.3","depth":2,"path":"算法库/dnn.md","ref":"算法库/dnn.md","articles":[]},"dir":"ltr"},"config":{"plugins":["code","splitter","expandable-chapters","chart","graph","katex"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"graph":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"chart":{"type":"c3"},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"opencv","language":"zh-hans","output.name":"site","gitbook":"3.2.3"},"file":{"path":"车流量检测实现/ReadMe.md","mtime":"2020-04-30T06:04:44.334Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-12-18T03:04:21.171Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

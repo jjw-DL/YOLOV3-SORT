@@ -1,0 +1,587 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>3.10.yoloV3模型 · opencv</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-code/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-katex/katex.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="dection.html" />
+    
+    
+    <link rel="prev" href="sort.html" />
+    
+
+    <script src="../gitbook/gitbook-plugin-graph/d3.min.js"></script>
+    <script src="../gitbook/gitbook-plugin-graph/function-plot.js"></script>    
+
+    
+    <link rel="stylesheet" href="../gitbook/gitbook-plugin-chart/c3/c3.min.css">
+    <script src="../gitbook/gitbook-plugin-chart/c3/d3.min.js"></script>
+    <script src="../gitbook/gitbook-plugin-chart/c3/c3.min.js"></script>
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../项目简介/ReadMe.html">
+            
+                <a href="../项目简介/ReadMe.html">
+            
+                    
+                    1.项目简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../算法库/ReadMe.html">
+            
+                <a href="../算法库/ReadMe.html">
+            
+                    
+                    2.算法库
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../算法库/numba.html">
+            
+                <a href="../算法库/numba.html">
+            
+                    
+                    2.1. numba
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../算法库/imutils.html">
+            
+                <a href="../算法库/imutils.html">
+            
+                    
+                    2.2. imutils
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../算法库/dnn.html">
+            
+                <a href="../算法库/dnn.html">
+            
+                    
+                    2.3. cv.dnn
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="ReadMe.html">
+            
+                <a href="ReadMe.html">
+            
+                    
+                    3.车流量检测实现
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="MOT.html">
+            
+                <a href="MOT.html">
+            
+                    
+                    3.1. 多目标追踪
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="help.html">
+            
+                <a href="help.html">
+            
+                    
+                    3.2. 辅助功能
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="kalmam.html">
+            
+                <a href="kalmam.html">
+            
+                    
+                    3.3.卡尔曼滤波器 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="kalmamRelize.html">
+            
+                <a href="kalmamRelize.html">
+            
+                    
+                    3.4.卡尔曼滤波器实践 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="kalman.html">
+            
+                <a href="kalman.html">
+            
+                    
+                    3.5. 目标估计模型-卡尔曼滤波
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="Hungrarian.html">
+            
+                <a href="Hungrarian.html">
+            
+                    
+                    3.6. 匈牙利算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="associate.html">
+            
+                <a href="associate.html">
+            
+                    
+                    3.7. 数据关联
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="deepsort.html">
+            
+                <a href="deepsort.html">
+            
+                    
+                    3.8. SORT/deepSORT 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="sort.html">
+            
+                <a href="sort.html">
+            
+                    
+                    3.9.多目标追踪实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.10" data-path="yoloV3.html">
+            
+                <a href="yoloV3.html">
+            
+                    
+                    3.10.yoloV3模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.11" data-path="dection.html">
+            
+                <a href="dection.html">
+            
+                    
+                    3.11. 基于yoloV3的目标检测
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.12" data-path="count.html">
+            
+                <a href="count.html">
+            
+                    
+                    3.12. 车流量统计
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.13" data-path="result.html">
+            
+                <a href="result.html">
+            
+                    
+                    3.13. 视频中的车流量统计
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >3.10.yoloV3模型</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="310yolov3&#x6A21;&#x578B;">3.10.yoloV3&#x6A21;&#x578B;</h1>
+<p><strong>&#x5B66;&#x4E60;&#x76EE;&#x6807;</strong></p>
+<ul>
+<li>&#x77E5;&#x9053;yoloV3&#x7684;&#x591A;&#x5C3A;&#x5EA6;&#x68C0;&#x6D4B;&#x65B9;&#x6CD5;</li>
+<li>&#x77E5;&#x9053;yoloV3&#x6A21;&#x578B;&#x7684;&#x7F51;&#x7EDC;&#x7ED3;&#x6784;&#x53CA;&#x7F51;&#x7EDC;&#x8F93;&#x51FA;</li>
+<li>&#x4E86;&#x89E3;yoloV3&#x6A21;&#x578B;&#x5148;&#x9A8C;&#x6846;&#x8BBE;&#x8BA1;&#x7684;&#x65B9;&#x6CD5;</li>
+<li>&#x77E5;&#x9053;yoloV3&#x6A21;&#x578B;&#x4E3A;&#x4EC0;&#x4E48;&#x9002;&#x7528;&#x4E8E;&#x591A;&#x6807;&#x7B7E;&#x7684;&#x76EE;&#x6807;&#x5206;&#x7C7B;</li>
+</ul>
+<hr>
+<p>yoloV3&#x4EE5;V1&#xFF0C;V2&#x4E3A;&#x57FA;&#x7840;&#x8FDB;&#x884C;&#x7684;&#x6539;&#x8FDB;&#xFF0C;&#x4E3B;&#x8981;&#x6709;&#xFF1A;&#x5229;&#x7528;&#x591A;&#x5C3A;&#x5EA6;&#x7279;&#x5F81;&#x8FDB;&#x884C;&#x76EE;&#x6807;&#x68C0;&#x6D4B;&#xFF1B;&#x5148;&#x9A8C;&#x6846;&#x66F4;&#x4E30;&#x5BCC;&#xFF1B;&#x8C03;&#x6574;&#x4E86;&#x7F51;&#x7EDC;&#x7ED3;&#x6784;&#xFF1B;&#x5BF9;&#x8C61;&#x5206;&#x7C7B;&#x4F7F;&#x7528;logistic&#x4EE3;&#x66FF;&#x4E86;softmax,&#x66F4;&#x9002;&#x7528;&#x4E8E;&#x591A;&#x6807;&#x7B7E;&#x5206;&#x7C7B;&#x4EFB;&#x52A1;&#x3002;</p>
+<h1 id="1&#x7B97;&#x6CD5;&#x7B80;&#x4ECB;">1.&#x7B97;&#x6CD5;&#x7B80;&#x4ECB;</h1>
+<p>YOLOv3&#x662F;YOLO (You Only Look Once)&#x7CFB;&#x5217;&#x76EE;&#x6807;&#x68C0;&#x6D4B;&#x7B97;&#x6CD5;&#x4E2D;&#x7684;&#x7B2C;&#x4E09;&#x7248;&#xFF0C;&#x76F8;&#x6BD4;&#x4E4B;&#x524D;&#x7684;&#x7B97;&#x6CD5;&#xFF0C;&#x5C24;&#x5176;&#x662F;&#x9488;&#x5BF9;&#x5C0F;&#x76EE;&#x6807;&#xFF0C;&#x7CBE;&#x5EA6;&#x6709;&#x663E;&#x8457;&#x63D0;&#x5347;&#x3002;</p>
+<p><img src="yoloV3.assets/image-20200502103836394.png" alt="image-20200502103836394"></p>
+<p>yoloV3&#x7684;&#x6D41;&#x7A0B;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF0C;&#x5BF9;&#x4E8E;&#x6BCF;&#x4E00;&#x5E45;&#x8F93;&#x5165;&#x56FE;&#x50CF;&#xFF0C;YOLOv3&#x4F1A;&#x9884;&#x6D4B;&#x4E09;&#x4E2A;&#x4E0D;&#x540C;&#x5C3A;&#x5EA6;&#x7684;&#x8F93;&#x51FA;&#xFF0C;&#x76EE;&#x7684;&#x662F;&#x68C0;&#x6D4B;&#x51FA;&#x4E0D;&#x540C;&#x5927;&#x5C0F;&#x7684;&#x76EE;&#x6807;&#x3002;</p>
+<p><img src="yoloV3.assets/image-20200502104048380.png" alt="image-20200502104048380"></p>
+<h1 id="2&#x591A;&#x5C3A;&#x5EA6;&#x68C0;&#x6D4B;">2.&#x591A;&#x5C3A;&#x5EA6;&#x68C0;&#x6D4B;</h1>
+<p>&#x901A;&#x5E38;&#x4E00;&#x5E45;&#x56FE;&#x50CF;&#x5305;&#x542B;&#x5404;&#x79CD;<strong>&#x4E0D;&#x540C;&#x7684;&#x7269;&#x4F53;</strong>&#xFF0C;&#x5E76;&#x4E14;<strong>&#x6709;&#x5927;&#x6709;&#x5C0F;</strong>&#x3002;&#x6BD4;&#x8F83;&#x7406;&#x60F3;&#x7684;&#x662F;&#x4E00;&#x6B21;&#x5C31;&#x53EF;&#x4EE5;&#x5C06;&#x6240;&#x6709;&#x5927;&#x5C0F;&#x7684;&#x7269;&#x4F53;&#x540C;&#x65F6;&#x68C0;&#x6D4B;&#x51FA;&#x6765;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x7F51;&#x7EDC;&#x5FC5;&#x987B;&#x5177;&#x5907;<strong>&#x80FD;&#x591F;&#x201C;&#x770B;&#x5230;&#x201D;&#x4E0D;&#x540C;&#x5927;&#x5C0F;&#x7684;&#x7269;&#x4F53;</strong>&#x7684;&#x80FD;&#x529B;&#x3002;&#x56E0;&#x4E3A;&#x7F51;&#x7EDC;&#x8D8A;&#x6DF1;&#xFF0C;&#x7279;&#x5F81;&#x56FE;&#x5C31;&#x4F1A;&#x8D8A;&#x5C0F;&#xFF0C;&#x6240;&#x4EE5;&#x7F51;&#x7EDC;&#x8D8A;&#x6DF1;&#x5C0F;&#x7684;&#x7269;&#x4F53;&#x4E5F;&#x5C31;&#x8D8A;&#x96BE;&#x68C0;&#x6D4B;&#x51FA;&#x6765;&#x3002;</p>
+<p>&#x5728;&#x5B9E;&#x9645;&#x7684;feature map&#x4E2D;&#xFF0C;&#x968F;&#x7740;&#x7F51;&#x7EDC;&#x6DF1;&#x5EA6;&#x7684;&#x52A0;&#x6DF1;&#xFF0C;<strong>&#x6D45;&#x5C42;</strong>&#x7684;feature map&#x4E2D;&#x4E3B;&#x8981;&#x5305;&#x542B;<strong>&#x4F4E;&#x7EA7;&#x7684;&#x4FE1;&#x606F;</strong>&#xFF08;&#x7269;&#x4F53;&#x8FB9;&#x7F18;&#xFF0C;&#x989C;&#x8272;&#xFF0C;&#x521D;&#x7EA7;&#x4F4D;&#x7F6E;&#x4FE1;&#x606F;&#x7B49;&#xFF09;&#xFF0C;<strong>&#x6DF1;&#x5C42;</strong>&#x7684;feature map&#x4E2D;&#x5305;&#x542B;<strong>&#x9AD8;&#x7B49;&#x4FE1;&#x606F;</strong>&#xFF08;&#x4F8B;&#x5982;&#x7269;&#x4F53;&#x7684;&#x8BED;&#x4E49;&#x4FE1;&#x606F;&#xFF1A;&#x72D7;&#xFF0C;&#x732B;&#xFF0C;&#x6C7D;&#x8F66;&#x7B49;&#x7B49;&#xFF09;&#x3002;&#x56E0;&#x6B64;&#x5728;&#x4E0D;&#x540C;&#x7EA7;&#x522B;&#x7684;feature map&#x5BF9;&#x5E94;&#x4E0D;&#x540C;&#x7684;scale&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5728;&#x4E0D;&#x540C;&#x7EA7;&#x522B;&#x7684;&#x7279;&#x5F81;&#x56FE;&#x4E2D;&#x8FDB;&#x884C;&#x76EE;&#x6807;&#x68C0;&#x6D4B;&#x3002;&#x5982;&#x4E0B;&#x56FE;&#x5C55;&#x793A;&#x4E86;&#x591A;&#x79CD;scale&#x53D8;&#x6362;&#x7684;&#x7ECF;&#x5178;&#x65B9;&#x6CD5;&#x3002;</p>
+<p><img src="yoloV3.assets/image-20200502104855459.png" alt="image-20200502104855459"></p>
+<p>(a) &#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x9996;&#x5148;<strong>&#x5EFA;&#x7ACB;&#x56FE;&#x50CF;&#x91D1;&#x5B57;&#x5854;</strong>&#xFF0C;&#x4E0D;&#x540C;&#x5C3A;&#x5EA6;&#x7684;&#x91D1;&#x5B57;&#x5854;&#x56FE;&#x50CF;&#x88AB;&#x8F93;&#x5165;&#x5230;<strong>&#x5BF9;&#x5E94;&#x7684;&#x7F51;&#x7EDC;</strong>&#x5F53;&#x4E2D;&#xFF0C;&#x7528;&#x4E8E;&#x4E0D;&#x540C;scale&#x7269;&#x4F53;&#x7684;&#x68C0;&#x6D4B;&#x3002;&#x4F46;&#x8FD9;&#x6837;&#x505A;&#x7684;&#x7ED3;&#x679C;&#x5C31;&#x662F;&#x6BCF;&#x4E2A;&#x7EA7;&#x522B;&#x7684;&#x91D1;&#x5B57;&#x5854;&#x90FD;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x4E00;&#x6B21;&#x5904;&#x7406;&#xFF0C;&#x901F;&#x5EA6;&#x5F88;&#x6162;&#xFF0C;&#x5728;SPPNet&#x4F7F;&#x7528;&#x7684;&#x5C31;&#x662F;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x3002;</p>
+<p>(b) &#x68C0;&#x6D4B;&#x53EA;&#x5728;<strong>&#x6700;&#x540E;&#x4E00;&#x5C42;feature map</strong>&#x9636;&#x6BB5;&#x8FDB;&#x884C;&#xFF0C;&#x8FD9;&#x4E2A;&#x7ED3;&#x6784;&#x65E0;&#x6CD5;&#x68C0;&#x6D4B;&#x4E0D;&#x540C;&#x5927;&#x5C0F;&#x7684;&#x7269;&#x4F53;</p>
+<p>(c) &#x5BF9;<strong>&#x4E0D;&#x540C;&#x6DF1;&#x5EA6;&#x7684;feature map</strong>&#x5206;&#x522B;&#x8FDB;&#x884C;&#x76EE;&#x6807;&#x68C0;&#x6D4B;&#x3002;SSD&#x4E2D;&#x91C7;&#x7528;&#x7684;&#x4FBF;&#x662F;&#x8FD9;&#x6837;&#x7684;&#x7ED3;&#x6784;&#x3002;&#x8FD9;&#x6837;<strong>&#x5C0F;&#x7684;&#x7269;&#x4F53;&#x4F1A;&#x5728;&#x6D45;&#x5C42;</strong>&#x7684;feature map&#x4E2D;&#x88AB;&#x68C0;&#x6D4B;&#x51FA;&#x6765;&#xFF0C;&#x800C;<strong>&#x5927;&#x7684;&#x7269;&#x4F53;&#x4F1A;&#x5728;&#x6DF1;&#x5C42;</strong>&#x7684;feature map&#x88AB;&#x68C0;&#x6D4B;&#x51FA;&#x6765;&#xFF0C;&#x4ECE;&#x800C;&#x8FBE;&#x5230;&#x5BF9;&#x5E94;&#x4E0D;&#x540C;scale&#x7684;&#x7269;&#x4F53;&#x7684;&#x76EE;&#x7684;&#xFF0C;&#x7F3A;&#x70B9;&#x662F;&#x6BCF;&#x4E00;&#x4E2A;feature map&#x83B7;&#x5F97;&#x7684;&#x4FE1;&#x606F;&#x4EC5;&#x6765;&#x6E90;&#x4E8E;&#x4E4B;&#x524D;&#x7684;&#x5C42;&#xFF0C;<strong>&#x4E4B;&#x540E;&#x7684;&#x5C42;&#x7684;&#x7279;&#x5F81;&#x4FE1;&#x606F;&#x65E0;&#x6CD5;&#x83B7;&#x53D6;</strong>&#x5E76;&#x52A0;&#x4EE5;&#x5229;&#x7528;&#x3002;</p>
+<p>(d) &#x4E0E;(c)&#x5F88;&#x63A5;&#x8FD1;&#xFF0C;&#x4F46;&#x4E0D;&#x540C;&#x7684;&#x662F;&#xFF0C;<strong>&#x5F53;&#x524D;&#x5C42;&#x7684;feature map&#x4F1A;&#x5BF9;&#x672A;&#x6765;&#x5C42;&#x7684;feature map&#x8FDB;&#x884C;&#x4E0A;&#x91C7;&#x6837;&#xFF0C;&#x5E76;&#x52A0;&#x4EE5;&#x5229;&#x7528;</strong>&#x3002;&#x56E0;&#x4E3A;&#x6709;&#x4E86;&#x8FD9;&#x6837;&#x4E00;&#x4E2A;&#x7ED3;&#x6784;&#xFF0C;&#x5F53;&#x524D;&#x7684;feature map&#x5C31;&#x53EF;&#x4EE5;&#x83B7;&#x5F97;&#x201C;&#x672A;&#x6765;&#x201D;&#x5C42;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x8FD9;&#x6837;&#x7684;&#x8BDD;&#x4F4E;&#x9636;&#x7279;&#x5F81;&#x4E0E;&#x9AD8;&#x9636;&#x7279;&#x5F81;&#x5C31;&#x6709;&#x673A;&#x878D;&#x5408;&#x8D77;&#x6765;&#x4E86;&#xFF0C;&#x63D0;&#x5347;&#x68C0;&#x6D4B;&#x7CBE;&#x5EA6;&#x3002;<strong>&#x5728;YOLOv3&#x4E2D;&#xFF0C;&#x5C31;&#x662F;&#x91C7;&#x7528;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x6765;&#x5B9E;&#x73B0;&#x76EE;&#x6807;&#x591A;&#x5C3A;&#x5EA6;&#x7684;&#x53D8;&#x6362;&#x7684;</strong>&#x3002;</p>
+<h1 id="3&#x7F51;&#x7EDC;&#x6A21;&#x578B;&#x7ED3;&#x6784;">3.&#x7F51;&#x7EDC;&#x6A21;&#x578B;&#x7ED3;&#x6784;</h1>
+<p>&#x5728;&#x57FA;&#x672C;&#x7684;&#x56FE;&#x50CF;&#x7279;&#x5F81;&#x63D0;&#x53D6;&#x65B9;&#x9762;&#xFF0C;YOLO3&#x91C7;&#x7528;&#x4E86;Darknet-53&#x7684;&#x7F51;&#x7EDC;&#x7ED3;&#x6784;&#xFF08;&#x542B;&#x6709;53&#x4E2A;&#x5377;&#x79EF;&#x5C42;&#xFF09;&#xFF0C;&#x5B83;&#x501F;&#x9274;&#x4E86;&#x6B8B;&#x5DEE;&#x7F51;&#x7EDC;ResNet&#x7684;&#x505A;&#x6CD5;&#xFF0C;&#x5728;&#x5C42;&#x4E4B;&#x95F4;&#x8BBE;&#x7F6E;&#x4E86;shortcut&#xFF0C;&#x6765;&#x89E3;&#x51B3;&#x6DF1;&#x5C42;&#x7F51;&#x7EDC;&#x68AF;&#x5EA6;&#x7684;&#x95EE;&#x9898;&#xFF0C;shortcut&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;&#x5305;&#x542B;<strong>&#x4E24;&#x4E2A;&#x5377;&#x79EF;&#x5C42;&#x548C;&#x4E00;&#x4E2A;shortcut connections</strong>&#x3002;</p>
+<p><img src="yoloV3.assets/image-20200502110956252.png" alt="image-20200502110956252"></p>
+<p>yoloV3&#x7684;&#x6A21;&#x578B;&#x7ED3;&#x6784;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<p><img src="yoloV3.assets/image-20200502111149692.png" alt="image-20200502111149692"></p>
+<p>&#x6574;&#x4E2A;v3&#x7ED3;&#x6784;&#x91CC;&#x9762;&#xFF0C;<strong>&#x6CA1;&#x6709;&#x6C60;&#x5316;&#x5C42;&#x548C;&#x5168;&#x8FDE;&#x63A5;&#x5C42;</strong>&#xFF0C;&#x7F51;&#x7EDC;&#x7684;&#x4E0B;&#x91C7;&#x6837;&#x662F;&#x901A;&#x8FC7;&#x8BBE;&#x7F6E;&#x5377;&#x79EF;&#x7684;stride&#x4E3A;2&#x6765;&#x8FBE;&#x5230;&#x7684;&#xFF0C;&#x6BCF;&#x5F53;&#x901A;&#x8FC7;&#x8FD9;&#x4E2A;&#x5377;&#x79EF;&#x5C42;&#x4E4B;&#x540E;&#x56FE;&#x50CF;&#x7684;&#x5C3A;&#x5BF8;&#x5C31;&#x4F1A;&#x51CF;&#x5C0F;&#x5230;&#x4E00;&#x534A;&#x3002;&#x6B8B;&#x5DEE;&#x6A21;&#x5757;&#x4E2D;&#x7684;1&#xD7;&#xFF0C;2&#xD7;&#xFF0C;8&#xD7;&#xFF0C;8&#xD7; &#x7B49;&#x8868;&#x793A;&#x6B8B;&#x5DEE;&#x6A21;&#x5757;&#x7684;&#x4E2A;&#x6570;&#x3002;</p>
+<h1 id="4&#x5148;&#x9A8C;&#x6846;">4.&#x5148;&#x9A8C;&#x6846;</h1>
+<p>yoloV3&#x91C7;&#x7528;K-means&#x805A;&#x7C7B;&#x5F97;&#x5230;&#x5148;&#x9A8C;&#x6846;&#x7684;&#x5C3A;&#x5BF8;&#xFF0C;&#x4E3A;&#x6BCF;&#x79CD;&#x5C3A;&#x5EA6;&#x8BBE;&#x5B9A;3&#x79CD;&#x5148;&#x9A8C;&#x6846;&#xFF0C;&#x603B;&#x5171;&#x805A;&#x7C7B;&#x51FA;9&#x79CD;&#x5C3A;&#x5BF8;&#x7684;&#x5148;&#x9A8C;&#x6846;&#x3002;</p>
+<p><img src="yoloV3.assets/image-20200502103458654.png" alt="image-20200502103458654"></p>
+<p>&#x5728;COCO&#x6570;&#x636E;&#x96C6;&#x8FD9;9&#x4E2A;&#x5148;&#x9A8C;&#x6846;&#x662F;&#xFF1A;(10x13)&#xFF0C;(16x30)&#xFF0C;(33x23)&#xFF0C;(30x61)&#xFF0C;(62x45)&#xFF0C;(59x119)&#xFF0C;(116x90)&#xFF0C;(156x198)&#xFF0C;(373x326)&#x3002;&#x5728;&#x6700;&#x5C0F;&#x7684;(13x13)&#x7279;&#x5F81;&#x56FE;&#x4E0A;&#xFF08;&#x6709;&#x6700;&#x5927;&#x7684;&#x611F;&#x53D7;&#x91CE;&#xFF09;&#x5E94;&#x7528;&#x8F83;&#x5927;&#x7684;&#x5148;&#x9A8C;&#x6846;(116x90)&#xFF0C;(156x198)&#xFF0C;(373x326)&#xFF0C;&#x9002;&#x5408;&#x68C0;&#x6D4B;&#x8F83;&#x5927;&#x7684;&#x5BF9;&#x8C61;&#x3002;&#x4E2D;&#x7B49;&#x7684;(26x26)&#x7279;&#x5F81;&#x56FE;&#x4E0A;&#xFF08;&#x4E2D;&#x7B49;&#x611F;&#x53D7;&#x91CE;&#xFF09;&#x5E94;&#x7528;&#x4E2D;&#x7B49;&#x7684;&#x5148;&#x9A8C;&#x6846;(30x61)&#xFF0C;(62x45)&#xFF0C;(59x119)&#xFF0C;&#x9002;&#x5408;&#x68C0;&#x6D4B;&#x4E2D;&#x7B49;&#x5927;&#x5C0F;&#x7684;&#x5BF9;&#x8C61;&#x3002;&#x8F83;&#x5927;&#x7684;(52x52)&#x7279;&#x5F81;&#x56FE;&#x4E0A;&#xFF08;&#x8F83;&#x5C0F;&#x7684;&#x611F;&#x53D7;&#x91CE;&#xFF09;&#x5E94;&#x7528;,&#x5176;&#x4E2D;&#x8F83;&#x5C0F;&#x7684;&#x5148;&#x9A8C;&#x6846;(10x13)&#xFF0C;(16x30)&#xFF0C;(33x23)&#xFF0C;&#x9002;&#x5408;&#x68C0;&#x6D4B;&#x8F83;&#x5C0F;&#x7684;&#x5BF9;&#x8C61;&#x3002;</p>
+<p>&#x76F4;&#x89C2;&#x4E0A;&#x611F;&#x53D7;9&#x79CD;&#x5148;&#x9A8C;&#x6846;&#x7684;&#x5C3A;&#x5BF8;&#xFF0C;&#x4E0B;&#x56FE;&#x4E2D;&#x84DD;&#x8272;&#x6846;&#x4E3A;&#x805A;&#x7C7B;&#x5F97;&#x5230;&#x7684;&#x5148;&#x9A8C;&#x6846;&#x3002;&#x9EC4;&#x8272;&#x6846;&#x5F0F;ground truth&#xFF0C;&#x7EA2;&#x6846;&#x662F;&#x5BF9;&#x8C61;&#x4E2D;&#x5FC3;&#x70B9;&#x6240;&#x5728;&#x7684;&#x7F51;&#x683C;&#x3002;</p>
+<p><img src="yoloV3.assets/image-20200502103442569.png" alt="image-20200502103442569"></p>
+<h1 id="5ligistic&#x56DE;&#x5F52;">5.ligistic&#x56DE;&#x5F52;</h1>
+<p>&#x9884;&#x6D4B;&#x5BF9;&#x8C61;&#x7C7B;&#x522B;&#x65F6;&#x4E0D;&#x4F7F;&#x7528;softmax&#xFF0C;&#x800C;&#x662F;&#x88AB;&#x66FF;&#x6362;&#x4E3A;&#x4E00;&#x4E2A;1x1&#x7684;&#x5377;&#x79EF;&#x5C42;+logistic&#x6FC0;&#x6D3B;&#x51FD;&#x6570;&#x7684;&#x7ED3;&#x6784;&#x3002;&#x4F7F;&#x7528;softmax&#x5C42;&#x7684;&#x65F6;&#x5019;&#x5176;&#x5B9E;&#x5DF2;&#x7ECF;&#x5047;&#x8BBE;&#x6BCF;&#x4E2A;&#x8F93;&#x51FA;&#x4EC5;&#x5BF9;&#x5E94;&#x67D0;&#x4E00;&#x4E2A;&#x5355;&#x4E2A;&#x7684;class&#xFF0C;&#x4F46;&#x662F;&#x5728;&#x67D0;&#x4E9B;class&#x5B58;&#x5728;&#x91CD;&#x53E0;&#x60C5;&#x51B5;&#xFF08;&#x4F8B;&#x5982;woman&#x548C;person&#xFF09;&#x7684;&#x6570;&#x636E;&#x96C6;&#x4E2D;&#xFF0C;&#x4F7F;&#x7528;softmax&#x5C31;&#x4E0D;&#x80FD;&#x4F7F;&#x7F51;&#x7EDC;&#x5BF9;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x5F88;&#x597D;&#x7684;&#x9884;&#x6D4B;&#x3002;</p>
+<p><img src="yoloV3.assets/image-20200502112750112.png" alt="image-20200502112750112"></p>
+<h1 id="6yolov3&#x6A21;&#x578B;&#x7684;&#x8F93;&#x5165;&#x4E0E;&#x8F93;&#x51FA;">6.yoloV3&#x6A21;&#x578B;&#x7684;&#x8F93;&#x5165;&#x4E0E;&#x8F93;&#x51FA;</h1>
+<p>YoloV3&#x7684;&#x8F93;&#x5165;&#x8F93;&#x51FA;&#x5F62;&#x5F0F;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;
+<img src="yoloV3.assets/image-20200502111721372.png" alt="image-20200502111721372"></p>
+<p>&#x8F93;&#x5165;<strong>416&#xD7;416&#xD7;3</strong>&#x7684;&#x56FE;&#x50CF;&#xFF0C;&#x901A;&#x8FC7;darknet&#x7F51;&#x7EDC;&#x5F97;&#x5230;&#x4E09;&#x79CD;&#x4E0D;&#x540C;&#x5C3A;&#x5EA6;&#x7684;&#x9884;&#x6D4B;&#x7ED3;&#x679C;&#xFF0C;&#x6BCF;&#x4E2A;&#x5C3A;&#x5EA6;&#x90FD;&#x5BF9;&#x5E94;N&#x4E2A;&#x901A;&#x9053;&#xFF0C;&#x5305;&#x542B;&#x7740;&#x9884;&#x6D4B;&#x7684;&#x4FE1;&#x606F;&#xFF1B;</p>
+<p>&#x6BCF;&#x4E2A;&#x7F51;&#x683C;&#x6BCF;&#x4E2A;&#x5C3A;&#x5BF8;&#x7684;anchors&#x7684;&#x9884;&#x6D4B;&#x7ED3;&#x679C;&#x3002;</p>
+<p>YOLOv3&#x5171;&#x6709;13&#xD7;13&#xD7;3 + 26&#xD7;26&#xD7;3  + 52&#xD7;52&#xD7;3&#x4E2A;&#x9884;&#x6D4B; &#x3002;&#x6BCF;&#x4E2A;&#x9884;&#x6D4B;&#x5BF9;&#x5E94;<strong>85</strong>&#x7EF4;&#xFF0C;&#x5206;&#x522B;&#x662F;<strong>4&#xFF08;&#x5750;&#x6807;&#x503C;&#xFF09;&#x3001;1&#xFF08;&#x7F6E;&#x4FE1;&#x5EA6;&#x5206;&#x6570;&#xFF09;&#x3001;80&#xFF08;coco&#x7C7B;&#x522B;&#x6982;&#x7387;&#xFF09;</strong>&#x3002;</p>
+<hr>
+<p><strong>&#x603B;&#x7ED3;</strong></p>
+<p>1.yoloV3&#x7684;&#x591A;&#x5C3A;&#x5EA6;&#x68C0;&#x6D4B;&#x65B9;&#x6CD5;</p>
+<p>&#x5728;YOLOv3&#x4E2D;&#x91C7;&#x7528;FPN&#x7ED3;&#x6784;&#x6765;&#x63D0;&#x9AD8;&#x5BF9;&#x5E94;&#x591A;&#x5C3A;&#x5EA6;&#x76EE;&#x6807;&#x68C0;&#x6D4B;&#x7684;&#x7CBE;&#x5EA6;&#xFF0C;&#x5F53;&#x524D;&#x7684;feature map&#x5229;&#x7528;&#x201C;&#x672A;&#x6765;&#x201D;&#x5C42;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x5C06;&#x4F4E;&#x9636;&#x7279;&#x5F81;&#x4E0E;&#x9AD8;&#x9636;&#x7279;&#x5F81;&#x8FDB;&#x884C;&#x878D;&#x5408;&#xFF0C;&#x63D0;&#x5347;&#x68C0;&#x6D4B;&#x7CBE;&#x5EA6;&#x3002;</p>
+<p>2.yoloV3&#x6A21;&#x578B;&#x7684;&#x7F51;&#x7EDC;&#x7ED3;&#x6784;</p>
+<ul>
+<li>&#x4EE5;darknet-53&#x4E3A;&#x57FA;&#x7840;&#xFF0C;&#x501F;&#x9274;resnet&#x7684;&#x601D;&#x60F3;&#xFF0C;&#x5728;&#x7F51;&#x7EDC;&#x4E2D;&#x52A0;&#x5165;&#x4E86;&#x6B8B;&#x5DEE;&#x6A21;&#x5757;&#xFF0C;&#x5229;&#x4E8E;&#x89E3;&#x51B3;&#x6DF1;&#x5C42;&#x6B21;&#x7F51;&#x7EDC;&#x7684;&#x68AF;&#x5EA6;&#x95EE;&#x9898;</li>
+<li>&#x6574;&#x4E2A;v3&#x7ED3;&#x6784;&#x91CC;&#x9762;&#xFF0C;&#x6CA1;&#x6709;&#x6C60;&#x5316;&#x5C42;&#x548C;&#x5168;&#x8FDE;&#x63A5;&#x5C42;&#xFF0C;&#x53EA;&#x6709;&#x5377;&#x79EF;&#x5C42;</li>
+<li>&#x7F51;&#x7EDC;&#x7684;&#x4E0B;&#x91C7;&#x6837;&#x662F;&#x901A;&#x8FC7;&#x8BBE;&#x7F6E;&#x5377;&#x79EF;&#x7684;stride&#x4E3A;2&#x6765;&#x8FBE;&#x5230;&#x7684;</li>
+</ul>
+<p>3.yoloV3&#x6A21;&#x578B;&#x5148;&#x9A8C;&#x6846;&#x8BBE;&#x8BA1;&#x7684;&#x65B9;&#x6CD5;</p>
+<p>&#x91C7;&#x7528;K-means&#x805A;&#x7C7B;&#x5F97;&#x5230;&#x5148;&#x9A8C;&#x6846;&#x7684;&#x5C3A;&#x5BF8;&#xFF0C;&#x4E3A;&#x6BCF;&#x79CD;&#x5C3A;&#x5EA6;&#x8BBE;&#x5B9A;3&#x79CD;&#x5148;&#x9A8C;&#x6846;&#xFF0C;&#x603B;&#x5171;&#x805A;&#x7C7B;&#x51FA;9&#x79CD;&#x5C3A;&#x5BF8;&#x7684;&#x5148;&#x9A8C;&#x6846;&#x3002;</p>
+<p>4.yoloV3&#x6A21;&#x578B;&#x4E3A;&#x4EC0;&#x4E48;&#x9002;&#x7528;&#x4E8E;&#x591A;&#x6807;&#x7B7E;&#x7684;&#x76EE;&#x6807;&#x5206;&#x7C7B;</p>
+<p>&#x9884;&#x6D4B;&#x5BF9;&#x8C61;&#x7C7B;&#x522B;&#x65F6;&#x4E0D;&#x4F7F;&#x7528;softmax&#xFF0C;&#x800C;&#x662F;&#x4F7F;&#x7528;logistic&#x7684;&#x8F93;&#x51FA;&#x8FDB;&#x884C;&#x9884;&#x6D4B;</p>
+<p>5.yoloV3&#x6A21;&#x578B;&#x7684;&#x8F93;&#x5165;&#x8F93;&#x51FA;</p>
+<p>&#x5BF9;&#x4E8E;<strong>416&#xD7;416&#xD7;3</strong>&#x7684;&#x8F93;&#x5165;&#x56FE;&#x50CF;&#xFF0C;&#x5728;&#x6BCF;&#x4E2A;&#x5C3A;&#x5EA6;&#x7684;&#x7279;&#x5F81;&#x56FE;&#x7684;&#x6BCF;&#x4E2A;&#x7F51;&#x683C;&#x8BBE;&#x7F6E;3&#x4E2A;&#x5148;&#x9A8C;&#x6846;&#xFF0C;&#x603B;&#x5171;&#x6709; 13&#xD7;13&#xD7;3 + 26&#xD7;26&#xD7;3  + 52&#xD7;52&#xD7;3 = <strong>10647</strong> &#x4E2A;&#x9884;&#x6D4B;&#x3002;&#x6BCF;&#x4E00;&#x4E2A;&#x9884;&#x6D4B;&#x662F;&#x4E00;&#x4E2A;<strong>(4+1+80)=85</strong>&#x7EF4;&#x5411;&#x91CF;&#xFF0C;&#x8FD9;&#x4E2A;85&#x7EF4;&#x5411;&#x91CF;&#x5305;&#x542B;<strong>&#x8FB9;&#x6846;&#x5750;&#x6807;&#xFF08;4&#x4E2A;&#x6570;&#x503C;&#xFF09;&#xFF0C;&#x8FB9;&#x6846;&#x7F6E;&#x4FE1;&#x5EA6;&#xFF08;1&#x4E2A;&#x6570;&#x503C;&#xFF09;&#xFF0C;&#x5BF9;&#x8C61;&#x7C7B;&#x522B;&#x7684;&#x6982;&#x7387;&#xFF08;&#x5BF9;&#x4E8E;COCO&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x6709;80&#x79CD;&#x5BF9;&#x8C61;&#xFF09;</strong>&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="sort.html" class="navigation navigation-prev " aria-label="Previous page: 3.9.多目标追踪实现">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="dection.html" class="navigation navigation-next " aria-label="Next page: 3.11. 基于yoloV3的目标检测">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"3.10.yoloV3模型","level":"1.4.10","depth":2,"next":{"title":"3.11. 基于yoloV3的目标检测","level":"1.4.11","depth":2,"path":"车流量检测实现/dection.md","ref":"车流量检测实现/dection.md","articles":[]},"previous":{"title":"3.9.多目标追踪实现","level":"1.4.9","depth":2,"path":"车流量检测实现/sort.md","ref":"车流量检测实现/sort.md","articles":[]},"dir":"ltr"},"config":{"plugins":["code","splitter","expandable-chapters","chart","graph","katex"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"graph":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"chart":{"type":"c3"},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"opencv","language":"zh-hans","output.name":"site","gitbook":"3.2.3"},"file":{"path":"车流量检测实现/yoloV3.md","mtime":"2020-05-02T04:52:31.601Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-12-18T03:04:21.171Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
